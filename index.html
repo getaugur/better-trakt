@@ -18,6 +18,11 @@
 <p>A Trakt.tv SDK for the modern age</p>
 </blockquote>
 
+<a href="#⚠️-alpha-notice" id="⚠️-alpha-notice" style="color: inherit; text-decoration: none;">
+  <h2>⚠️ Alpha Notice</h2>
+</a>
+<p>Until <code>beter-trakt</code> reaches <code>1.0</code>, there may be breaking changes in new minor versions.</p>
+
 <a href="#install" id="install" style="color: inherit; text-decoration: none;">
   <h2>Install</h2>
 </a>
@@ -30,15 +35,15 @@
 <pre><code class="language-js"><span class="hl-2">import</span><span class="hl-1"> { </span><span class="hl-3">Trakt</span><span class="hl-1"> } </span><span class="hl-2">from</span><span class="hl-1"> </span><span class="hl-4">&quot;better-trakt&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">Trakt</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-3">cliendId:</span><span class="hl-1"> </span><span class="hl-4">&quot;client id&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-3">clientSecret:</span><span class="hl-1"> </span><span class="hl-4">&quot;client secret&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">watchedMovies</span><span class="hl-1"> = </span><span class="hl-3">client</span><span class="hl-1">.</span><span class="hl-3">users</span><span class="hl-1">.</span><span class="hl-3">watched</span><span class="hl-1">.</span><span class="hl-7">movies</span><span class="hl-1">(</span><span class="hl-4">&quot;user id&quot;</span><span class="hl-1">, </span><span class="hl-4">&quot;access token&quot;</span><span class="hl-1">);</span>
 </code></pre>
 
-<a href="#⚠️-alpha-notice" id="⚠️-alpha-notice" style="color: inherit; text-decoration: none;">
-  <h2>⚠️ Alpha Notice</h2>
-</a>
-<p>Until <code>beter-trakt</code> reaches <code>1.0</code>, there may be breaking changes in new minor versions.</p>
-
 <a href="#trakt-api-shenanigans" id="trakt-api-shenanigans" style="color: inherit; text-decoration: none;">
   <h2>Trakt Api Shenanigans</h2>
 </a>
 <p>This sdk does its best to prove accurate typings for the api, but Trakt&#39;s Api has a lot on <strong>undocumented behavior</strong>. For this reason, it may just decide to <strong>not</strong> give you a random key, please be aware of this.</p>
+
+<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
+  <h2>Docs</h2>
+</a>
+<p>Docs for the latest release can be found at <a href="https://huskydog9988.github.io/better-trakt/">https://huskydog9988.github.io/better-trakt/</a>. For other versions simply run <code>yarn build:docs</code> in the repo.</p>
 </div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
