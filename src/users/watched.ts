@@ -7,7 +7,7 @@ export async function getWatchedShows(
   userId: string,
   accessToken?: string
 ) {
-  const url = `https://api.trakt.tv/users/${userId}/watched/movies`;
+  const url = `https://api.trakt.tv/users/${userId}/watched/shows`;
   const response = await fetch<WatchedShow[]>(client, url, accessToken);
 
   return response.data;
@@ -18,7 +18,7 @@ export async function getWatchedMovies(
   userId: string,
   accessToken?: string
 ) {
-  const url = `https://api.trakt.tv/users/${userId}/watched/shows`;
+  const url = `https://api.trakt.tv/users/${userId}/watched/movies`;
   const response = await fetch<WatchedMovie[]>(client, url, accessToken);
 
   return response.data;
