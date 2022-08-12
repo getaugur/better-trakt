@@ -128,3 +128,6 @@ dist
 
 # typedocs
 typedoc/
+
+# npmignore file, auto gen in ci
+.npmignore

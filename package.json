@@ -18,13 +18,20 @@
   ],
   "scripts": {
     "build": "tsc",
-    "build:docs": "typedoc --out typedoc/ src/index.ts"
+    "build:docs": "typedoc --out typedoc/ src/index.ts",
+    "prepack": "yarn build && npmignore --auto"
   },
   "dependencies": {
     "axios": "^0.27.2"
   },
   "devDependencies": {
+    "npmignore": "^0.3.0",
     "typedoc": "^0.23.10",
     "typescript": "^4.7.4"
+  },
+  "publishConfig": {
+    "ignore": [
+      "!dist/"
+    ]
   }
 }
