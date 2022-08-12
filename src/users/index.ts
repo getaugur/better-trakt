@@ -17,6 +17,12 @@ export interface Users {
   };
 }
 
+/**
+ *
+ * @private
+ * @param client
+ * @returns
+ */
 export function buildUsers(client: AxiosInstance): Users {
   return {
     watched: {

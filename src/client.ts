@@ -40,7 +40,7 @@ export interface TraktSettings {
 /**
  * Internal settings object used by sdk
  */
-interface TraktClassSettings extends TraktSettings {
+export interface TraktClassSettings extends TraktSettings {
   redirectUri: string;
   apiUrl: string;
   userAgent: string;
