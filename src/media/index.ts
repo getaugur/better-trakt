@@ -1,13 +1,21 @@
 import { AxiosInstance } from "axios";
-import { MovieSummary_Full, ShowSummary_Full } from "../trakt";
+import {
+  MoviePeople,
+  MovieSummary_Full,
+  ShowPeople,
+  ShowSummary_Full,
+} from "../trakt";
+import { getMoviePeople, getShowPeople } from "./people";
 import { getMovieSummary_Full, getShowSummary_Full } from "./summary";
 
 export interface Shows {
   summary: (showId: string) => Promise<ShowSummary_Full>;
+  people: (showId: string) => Promise<ShowPeople>;
 }
 
 export interface Movies {
   summary: (movieId: string) => Promise<MovieSummary_Full>;
+  people: (movieId: string) => Promise<MoviePeople>;
 }
 
 /**
@@ -24,6 +32,12 @@ export function buildShows(client: AxiosInstance): Shows {
      * @returns
      */
     summary: (showId) => getShowSummary_Full(client, showId),
+    /**
+     * Get people from a show
+     * @param showId
+     * @returns
+     */
+    people: (showId) => getShowPeople(client, showId),
   };
 }
 
@@ -41,5 +55,11 @@ export function buildMovies(client: AxiosInstance): Movies {
      * @returns
      */
     summary: (movieId) => getMovieSummary_Full(client, movieId),
+    /**
+     * Get people from a movie
+     * @param movieId
+     * @returns
+     */
+    people: (movieId) => getMoviePeople(client, movieId),
   };
 }
