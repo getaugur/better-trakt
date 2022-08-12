@@ -1,2 +1,3 @@
-# trakt.js
- A trakt api lib for the modern age
+# Better Trakt
+
+A Trakt.tv SDK for the modern age
