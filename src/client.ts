@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from "axios";
+import { buildMovies, buildShows, Movies, Shows } from "./media";
 // api methods
 import { buildUsers, Users } from "./users";
 
@@ -65,6 +66,16 @@ export class Trakt {
    */
   readonly users: Users;
 
+  /**
+   * Shows api
+   */
+  readonly shows: Shows;
+
+  /**
+   * Movies api
+   */
+  readonly movies: Movies;
+
   constructor(settings: TraktSettings) {
     // apply settings
     this.settings = {
@@ -88,5 +99,7 @@ export class Trakt {
     });
 
     this.users = buildUsers(this.client);
+    this.movies = buildMovies(this.client);
+    this.shows = buildShows(this.client);
   }
 }

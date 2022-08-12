@@ -16,38 +16,6 @@ export interface TraptApiContent {
   ids: TraktApiIds;
 }
 
-export interface TraktApiWatchedBaseFull extends TraptApiContent {
-  overview: string;
-  runtime: number;
-  country: string;
-  trailer?: string;
-  homepage?: string;
-  status: string;
-  rating: number;
-  votes: number;
-  comment_count: number;
-  language: string;
-  available_translations: string[];
-  genres: string[];
-  certification: string;
-}
-
-export interface TraktApiWatchedShowFull extends TraktApiWatchedBaseFull {
-  first_aired: string;
-  airs: {
-    day: string;
-    time: string;
-    timezone: string;
-  };
-  aired_episodes: number;
-  network: string;
-}
-
-export interface TraktApiWatchedMovieFull extends TraktApiWatchedBaseFull {
-  tagline: string;
-  released: string;
-}
-
 export interface TraktApiShowEpisode {
   number: number;
   plays: number;
