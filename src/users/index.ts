@@ -1,53 +1,36 @@
 import { AxiosInstance } from "axios";
-import { WatchedMovie, WatchedShow } from "../trakt";
+import { ApiNamespace } from "../client";
 import { getWatchedMovies, getWatchedShows } from "./watched";
 
-export interface Users {
-  watched: {
-    movies: (
-      userId: string,
-      accessToken?: string | undefined
-    ) => Promise<WatchedMovie[]>;
-    shows: (
-      /**
-       * Trakt app's client secret
-       */ userId: string,
-      accessToken?: string | undefined
-    ) => Promise<WatchedShow[]>; // api methods
-  };
-}
-
 /**
- *
- * @internal
- * @param client
- * @returns
+ * Users api namespace
  */
-export function buildUsers(client: AxiosInstance): Users {
-  return {
-    /**
-     * Methods to a user's watch history
-     */
-    watched: {
-      /**
-       * Gets a users movie watch history
-       * @param client axios
-       * @param userId trakt user id
-       * @param accessToken oauth access token for private accounts
-       * @returns
-       */
-      movies: (userId: string, accessToken?: string) =>
-        getWatchedMovies(client, userId, accessToken),
+export class Users implements ApiNamespace {
+  client: AxiosInstance;
 
-      /**
-       * Gets a users show watch history
-       * @param client axios
-       * @param userId trakt user id
-       * @param accessToken oauth access token for private accounts
-       * @returns
-       */
-      shows: (userId: string, accessToken?: string) =>
-        getWatchedShows(client, userId, accessToken),
-    },
-  };
+  constructor(client: AxiosInstance) {
+    this.client = client;
+  }
+
+  /**
+   * Gets a users movie watch history
+   * @param client axios
+   * @param userId trakt user id
+   * @param accessToken oauth access token for private accounts
+   * @returns
+   */
+  watchedMovies(userId: string, accessToken?: string) {
+    return getWatchedMovies(this.client, userId, accessToken);
+  }
+
+  /**
+   * Gets a users show watch history
+   * @param client axios
+   * @param userId trakt user id
+   * @param accessToken oauth access token for private accounts
+   * @returns
+   */
+  watchedShows(userId: string, accessToken?: string) {
+    return getWatchedShows(this.client, userId, accessToken);
+  }
 }
