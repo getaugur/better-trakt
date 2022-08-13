@@ -19,12 +19,16 @@
   "scripts": {
     "build": "tsc",
     "build:docs": "typedoc --options typedoc.json",
-    "prepack": "yarn build && npmignore --auto"
+    "prepack": "yarn build && npmignore --auto",
+    "prepare": "husky install"
   },
   "dependencies": {
     "axios": "^0.27.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.0",
     "npmignore": "^0.3.0",
     "typedoc": "^0.23.10",
     "typedoc-plugin-extras": "^2.3.0",
