@@ -1,65 +1,63 @@
 import { AxiosInstance } from "axios";
-import {
-  MoviePeople,
-  MovieSummary_Full,
-  ShowPeople,
-  ShowSummary_Full,
-} from "../trakt";
+import { ApiNamespace } from "../client";
+import { MoviePeople, MovieSummary_Full } from "../trakt";
 import { getMoviePeople, getShowPeople } from "./people";
 import { getMovieSummary_Full, getShowSummary_Full } from "./summary";
 
-export interface Shows {
-  summary: (showId: string) => Promise<ShowSummary_Full>;
-  people: (showId: string) => Promise<ShowPeople>;
-}
+/**
+ * Shows api namespace
+ */
+export class Shows implements ApiNamespace {
+  client: AxiosInstance;
 
-export interface Movies {
-  summary: (movieId: string) => Promise<MovieSummary_Full>;
-  people: (movieId: string) => Promise<MoviePeople>;
+  constructor(client: AxiosInstance) {
+    this.client = client;
+  }
+
+  /**
+   * Get details about a show
+   * @param showId show id
+   * @returns
+   */
+  summary(showId: string) {
+    return getShowSummary_Full(this.client, showId);
+  }
+
+  /**
+   * Get people from a show
+   * @param showId show id
+   * @returns
+   */
+  people(showId: string) {
+    return getShowPeople(this.client, showId);
+  }
 }
 
 /**
- *
- * @internal
- * @param client
- * @returns
+ * Movies api namespace
  */
-export function buildShows(client: AxiosInstance): Shows {
-  return {
-    /**
-     * Get details about a show
-     * @param showId
-     * @returns
-     */
-    summary: (showId) => getShowSummary_Full(client, showId),
-    /**
-     * Get people from a show
-     * @param showId
-     * @returns
-     */
-    people: (showId) => getShowPeople(client, showId),
-  };
-}
+export class Movies implements ApiNamespace {
+  client: AxiosInstance;
 
-/**
- *
- * @internal
- * @param client
- * @returns
- */
-export function buildMovies(client: AxiosInstance): Movies {
-  return {
-    /**
-     * Get details about a movie
-     * @param movieId
-     * @returns
-     */
-    summary: (movieId) => getMovieSummary_Full(client, movieId),
-    /**
-     * Get people from a movie
-     * @param movieId
-     * @returns
-     */
-    people: (movieId) => getMoviePeople(client, movieId),
-  };
+  constructor(client: AxiosInstance) {
+    this.client = client;
+  }
+
+  /**
+   * Get details about a movie
+   * @param movieId movie id
+   * @returns
+   */
+  summary(movieId: string) {
+    return getMovieSummary_Full(this.client, movieId);
+  }
+
+  /**
+   * Get people from a movie
+   * @param movieId movie id
+   * @returns
+   */
+  people(movieId: string) {
+    return getMoviePeople(this.client, movieId);
+  }
 }

@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
-import { buildMovies, buildShows, Movies, Shows } from "./media";
+import { Movies, Shows } from "./media";
 // api methods
-import { buildUsers, Users } from "./users";
+import { Users } from "./users";
 
 const version = "";
 
@@ -46,6 +46,14 @@ export interface TraktClassSettings extends TraktSettings {
   redirectUri: string;
   apiUrl: string;
   userAgent: string;
+}
+
+/**
+ * Class interface for api namespaces
+ * @internal
+ */
+export interface ApiNamespace {
+  client: AxiosInstance;
 }
 
 /**
@@ -110,8 +118,8 @@ export class Trakt {
       },
     });
 
-    this.users = buildUsers(this.client);
-    this.movies = buildMovies(this.client);
-    this.shows = buildShows(this.client);
+    this.users = new Users(this.client);
+    this.movies = new Movies(this.client);
+    this.shows = new Shows(this.client);
   }
 }
