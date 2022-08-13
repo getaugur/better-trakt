@@ -20,7 +20,8 @@
     "build": "tsc",
     "build:docs": "typedoc --options typedoc.json",
     "prepack": "yarn build && npmignore --auto",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint ."
   },
   "dependencies": {
     "axios": "^0.27.2"
@@ -28,6 +29,9 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
     "husky": "^8.0.0",
     "npmignore": "^0.3.0",
     "typedoc": "^0.23.10",
