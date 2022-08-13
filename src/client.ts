@@ -40,6 +40,7 @@ export interface TraktSettings {
 
 /**
  * Internal settings object used by sdk
+ * @internal
  */
 export interface TraktClassSettings extends TraktSettings {
   redirectUri: string;
@@ -49,10 +50,21 @@ export interface TraktClassSettings extends TraktSettings {
 
 /**
  * Trakt.tv SDK
+ * @example
+ * SDK with basic config
+ * ```ts
+ * import { Trakt } from "better-trakt";
+ *
+ * const client = new Trakt({
+ *  cliendId: "client id",
+ *  clientSecret: "client secret",
+ * });
+ * ```
  */
 export class Trakt {
   /**
    * settings for sdk
+   * @internal
    */
   readonly settings: TraktClassSettings;
 
