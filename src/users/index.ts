@@ -1,6 +1,6 @@
-import { AxiosInstance } from "axios";
-import { ApiNamespace } from "../client";
-import { getWatchedMovies, getWatchedShows } from "./watched";
+import { AxiosInstance } from 'axios';
+import { ApiNamespace } from '../client';
+import { getWatchedMovies, getWatchedShows } from './watched';
 
 /**
  * Users api namespace

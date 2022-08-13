@@ -1,8 +1,8 @@
-import { AxiosInstance } from "axios";
-import { ApiNamespace } from "../client";
-import { MoviePeople, MovieSummary_Full } from "../trakt";
-import { getMoviePeople, getShowPeople } from "./people";
-import { getMovieSummary_Full, getShowSummary_Full } from "./summary";
+import { AxiosInstance } from 'axios';
+import { ApiNamespace } from '../client';
+import { MoviePeople, MovieSummary_Full } from '../trakt';
+import { getMoviePeople, getShowPeople } from './people';
+import { getMovieSummary_Full, getShowSummary_Full } from './summary';
 
 /**
  * Shows api namespace

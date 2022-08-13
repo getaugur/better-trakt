@@ -1,4 +1,4 @@
-import { TraptApiContent } from "./traktTypes";
+import { TraptApiContent } from './traktTypes';
 
 export interface Summary_Full extends TraptApiContent {
   overview: string;

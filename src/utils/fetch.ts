@@ -1,14 +1,9 @@
-import { AxiosInstance, AxiosRequestHeaders } from "axios";
+import { AxiosInstance, AxiosRequestHeaders } from 'axios';
 
-export async function fetch<T>(
-  client: AxiosInstance,
-  url: string,
-  accessToken?: string
-) {
+export async function fetch<T>(client: AxiosInstance, url: string, accessToken?: string) {
   const headers: AxiosRequestHeaders = {};
 
-  if (accessToken !== undefined)
-    headers["Authorization"] = `Bearer ${accessToken}`;
+  if (accessToken !== undefined) headers['Authorization'] = `Bearer ${accessToken}`;
 
   const response = await client.get<T>(url, {
     headers,
