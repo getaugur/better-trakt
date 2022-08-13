@@ -19,12 +19,15 @@ export interface Users {
 
 /**
  *
- * @private
+ * @internal
  * @param client
  * @returns
  */
 export function buildUsers(client: AxiosInstance): Users {
   return {
+    /**
+     * Methods to a user's watch history
+     */
     watched: {
       /**
        * Gets a users movie watch history

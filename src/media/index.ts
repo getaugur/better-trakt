@@ -20,7 +20,7 @@ export interface Movies {
 
 /**
  *
- * @private
+ * @internal
  * @param client
  * @returns
  */
@@ -43,7 +43,7 @@ export function buildShows(client: AxiosInstance): Shows {
 
 /**
  *
- * @private
+ * @internal
  * @param client
  * @returns
  */
