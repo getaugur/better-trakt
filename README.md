@@ -19,14 +19,14 @@ yarn add better-trakt
 ## Usage
 
 ```js
-import { Trakt } from "better-trakt";
+import { Trakt } from 'better-trakt';
 
 const client = new Trakt({
-  cliendId: "client id",
-  clientSecret: "client secret",
+  cliendId: 'client id',
+  clientSecret: 'client secret',
 });
 
-const watchedMovies = client.users.watched.movies("user id", "access token");
+const watchedMovies = client.users.watchedMovies('user id', 'access token');
 ```
 
 ## Trakt Api Shenanigans
