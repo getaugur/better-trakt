@@ -1,6 +1,6 @@
 {
   "name": "better-trakt",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A Trakt.tv client with native Typescript support and quality of life features",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
