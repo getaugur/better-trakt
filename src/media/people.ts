@@ -1,6 +1,6 @@
-import { AxiosInstance } from "axios";
-import { MoviePeople, ShowPeople } from "../trakt";
-import { fetch } from "../utils/fetch";
+import { AxiosInstance } from 'axios';
+import { MoviePeople, ShowPeople } from '../trakt';
+import { fetch } from '../utils/fetch';
 
 export async function getShowPeople(client: AxiosInstance, showId: string) {
   const url = `https://api.trakt.tv/shows/${showId}?extended=full`;

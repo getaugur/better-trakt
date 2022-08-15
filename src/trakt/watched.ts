@@ -1,4 +1,4 @@
-import { TraktApiShowSeason, TraptApiContent } from "./traktTypes";
+import { TraktApiShowSeason, TraptApiContent } from './traktTypes';
 
 /**
  * Shared data between watched movies and shows
