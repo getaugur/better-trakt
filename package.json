@@ -4,13 +4,13 @@
   "description": "A Trakt.tv client with native Typescript support and quality of life features",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/Huskydog9988/better-trakt.git",
+  "repository": "https://github.com/getaugur/better-trakt.git",
   "author": "Husky <39809509+Huskydog9988@users.noreply.github.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Huskydog9988/better-trakt/issues"
+    "url": "https://github.com/getaugur/better-trakt/issues"
   },
-  "homepage": "https://github.com/Huskydog9988/better-trakt",
+  "homepage": "https://github.com/getaugur/better-trakt",
   "keywords": [
     "trakt",
     "trakt.tv",

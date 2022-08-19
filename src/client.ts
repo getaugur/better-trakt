@@ -1,9 +1,9 @@
-import axios, { AxiosInstance } from "axios";
-import { Movies, Shows } from "./media";
+import axios, { AxiosInstance } from 'axios';
+import { Movies, Shows } from './media';
 // api methods
-import { Users } from "./users";
+import { Users } from './users';
 
-const version = "";
+const version = '';
 
 /**
  * Settings provided to Trakt Class
@@ -33,7 +33,7 @@ export interface TraktSettings {
 
   /**
    * User Agent sent in request headers
-   * @default "better-trakt / <pkg version> (+https://github.com/huskydog9988/better-trakt)"
+   * @default "better-trakt / <pkg version> (+https://github.com/getaugur/better-trakt/)"
    */
   userAgent?: string;
 }
@@ -101,20 +101,18 @@ export class Trakt {
     this.settings = {
       cliendId: settings.cliendId,
       clientSecret: settings.clientSecret,
-      redirectUri: settings.redirectUri || "urn:ietf:wg:oauth:2.0:oob",
-      apiUrl: settings.apiUrl || "https://api.trakt.tv",
-      userAgent:
-        settings.userAgent ||
-        `better-trakt / ${version}  (+https://github.com/huskydog9988/better-trakt)`,
+      redirectUri: settings.redirectUri || 'urn:ietf:wg:oauth:2.0:oob',
+      apiUrl: settings.apiUrl || 'https://api.trakt.tv',
+      userAgent: settings.userAgent || `better-trakt / ${version}  (+https://github.com/getaugur/better-trakt/)`,
     };
 
     // make base client
     this.client = axios.create({
       headers: {
-        "Content-type": "application/json",
-        "trakt-api-version": "2",
-        "trakt-api-key": this.settings.cliendId,
-        "User-Agent": this.settings.userAgent,
+        'Content-type': 'application/json',
+        'trakt-api-version': '2',
+        'trakt-api-key': this.settings.cliendId,
+        'User-Agent': this.settings.userAgent,
       },
     });
 

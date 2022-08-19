@@ -35,4 +35,4 @@ This sdk does its best to prove accurate typings for the api, but Trakt's Api ha
 
 ## Docs
 
-Docs for the latest release can be found at [https://huskydog9988.github.io/better-trakt/](https://huskydog9988.github.io/better-trakt/). For other versions simply run `yarn build:docs` in the repo.
+Docs for the latest release can be found at [https://getaugur.github.io/better-trakt/](https://getaugur.github.io/better-trakt/). For other versions simply run `yarn build:docs` in the repo.
