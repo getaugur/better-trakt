@@ -1,5 +1,7 @@
 # Better Trakt
 
+[![GitHub license](https://img.shields.io/github/license/getaugur/better-trakt)](https://github.com/getaugur/better-trakt/blob/main/LICENSE) ![npm](https://img.shields.io/npm/v/better-trakt?logo=npm)
+
 > A Trakt.tv SDK for the modern age
 
 ## ⚠️ Alpha Notice
