@@ -134,3 +134,4 @@ typedoc/
 
 # ignore config file
 commitlint.config.js
+.eslintrc.cjs
