@@ -22,7 +22,8 @@
     "prepack": "yarn build && npmignore --auto",
     "prepare": "husky install",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --quiet --fix"
+    "lint:fix": "eslint src/**/*.ts --quiet --fix",
+    "example": "node example/index.js"
   },
   "dependencies": {
     "axios": "^0.27.2"
