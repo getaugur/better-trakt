@@ -1,7 +1,4 @@
-// import 'mocha';
 import { expect } from 'chai';
-
-// test.expect;
 
 import trakt, { Trakt } from '../src/index';
 
