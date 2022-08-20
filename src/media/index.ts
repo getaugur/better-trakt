@@ -1,6 +1,4 @@
-import { AxiosInstance } from 'axios';
-import { ApiNamespace } from '../client';
-import { MoviePeople, MovieSummary_Full } from '../trakt';
+import { ApiConfig, ApiNamespace } from '../client';
 import { getMoviePeople, getShowPeople } from './people';
 import { getMovieSummary_Full, getShowSummary_Full } from './summary';
 
@@ -8,10 +6,10 @@ import { getMovieSummary_Full, getShowSummary_Full } from './summary';
  * Shows api namespace
  */
 export class Shows implements ApiNamespace {
-  client: AxiosInstance;
+  config: ApiConfig;
 
-  constructor(client: AxiosInstance) {
-    this.client = client;
+  constructor(config: ApiConfig) {
+    this.config = config;
   }
 
   /**
@@ -20,7 +18,7 @@ export class Shows implements ApiNamespace {
    * @returns
    */
   summary(showId: string) {
-    return getShowSummary_Full(this.client, showId);
+    return getShowSummary_Full(this.config, showId);
   }
 
   /**
@@ -29,7 +27,7 @@ export class Shows implements ApiNamespace {
    * @returns
    */
   people(showId: string) {
-    return getShowPeople(this.client, showId);
+    return getShowPeople(this.config, showId);
   }
 }
 
@@ -37,10 +35,10 @@ export class Shows implements ApiNamespace {
  * Movies api namespace
  */
 export class Movies implements ApiNamespace {
-  client: AxiosInstance;
+  config: ApiConfig;
 
-  constructor(client: AxiosInstance) {
-    this.client = client;
+  constructor(config: ApiConfig) {
+    this.config = config;
   }
 
   /**
@@ -49,7 +47,7 @@ export class Movies implements ApiNamespace {
    * @returns
    */
   summary(movieId: string) {
-    return getMovieSummary_Full(this.client, movieId);
+    return getMovieSummary_Full(this.config, movieId);
   }
 
   /**
@@ -58,6 +56,6 @@ export class Movies implements ApiNamespace {
    * @returns
    */
   people(movieId: string) {
-    return getMoviePeople(this.client, movieId);
+    return getMoviePeople(this.config, movieId);
   }
 }

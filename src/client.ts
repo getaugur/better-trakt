@@ -50,11 +50,20 @@ export interface TraktClassSettings extends TraktSettings {
 }
 
 /**
+ * Interface passed to internal api funcs
+ * @internal
+ */
+export interface ApiConfig {
+  client: AxiosInstance;
+  apiUrl: string;
+}
+
+/**
  * Class interface for api namespaces
  * @internal
  */
 export interface ApiNamespace {
-  client: AxiosInstance;
+  config: ApiConfig;
 }
 
 /**
@@ -122,9 +131,14 @@ export class Trakt {
       },
     });
 
-    this.users = new Users(this.client);
-    this.movies = new Movies(this.client);
-    this.shows = new Shows(this.client);
-    this.certifications = new Certifications(this.client);
+    const apiConfig: ApiConfig = {
+      client: this.client,
+      apiUrl: this.settings.apiUrl,
+    };
+
+    this.users = new Users(apiConfig);
+    this.movies = new Movies(apiConfig);
+    this.shows = new Shows(apiConfig);
+    this.certifications = new Certifications(apiConfig);
   }
 }
