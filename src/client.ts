@@ -12,7 +12,7 @@ export interface TraktSettings {
   /**
    * Trakt app's client id
    */
-  cliendId: string;
+  clientId: string;
 
   /**
    * Trakt app's client secret
@@ -64,7 +64,7 @@ export interface ApiNamespace {
  * import { Trakt } from "better-trakt";
  *
  * const client = new Trakt({
- *  cliendId: "client id",
+ *  clientId: "client id",
  *  clientSecret: "client secret",
  * });
  * ```
@@ -99,7 +99,7 @@ export class Trakt {
   constructor(settings: TraktSettings) {
     // apply settings
     this.settings = {
-      cliendId: settings.cliendId,
+      clientId: settings.clientId,
       clientSecret: settings.clientSecret,
       redirectUri: settings.redirectUri || 'urn:ietf:wg:oauth:2.0:oob',
       apiUrl: settings.apiUrl || 'https://api.trakt.tv',
@@ -111,7 +111,7 @@ export class Trakt {
       headers: {
         'Content-type': 'application/json',
         'trakt-api-version': '2',
-        'trakt-api-key': this.settings.cliendId,
+        'trakt-api-key': this.settings.clientId,
         'User-Agent': this.settings.userAgent,
       },
     });
