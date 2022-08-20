@@ -24,7 +24,7 @@ yarn add better-trakt
 import { Trakt } from 'better-trakt';
 
 const client = new Trakt({
-  cliendId: 'client id',
+  clientId: 'client id',
   clientSecret: 'client secret',
 });
 
