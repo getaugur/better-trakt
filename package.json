@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "build:check": "tsc --noEmit",
     "build:docs": "typedoc --options typedoc.json",
     "prepack": "yarn build && npmignore --auto",
     "prepare": "husky install",
