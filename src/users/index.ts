@@ -1,15 +1,14 @@
-import { AxiosInstance } from 'axios';
-import { ApiNamespace } from '../client';
+import { ApiConfig, ApiNamespace } from '../client';
 import { getWatchedMovies, getWatchedShows } from './watched';
 
 /**
  * Users api namespace
  */
 export class Users implements ApiNamespace {
-  client: AxiosInstance;
+  config: ApiConfig;
 
-  constructor(client: AxiosInstance) {
-    this.client = client;
+  constructor(config: ApiConfig) {
+    this.config = config;
   }
 
   /**
@@ -20,7 +19,7 @@ export class Users implements ApiNamespace {
    * @returns
    */
   watchedMovies(userId: string, accessToken?: string) {
-    return getWatchedMovies(this.client, userId, accessToken);
+    return getWatchedMovies(this.config, userId, accessToken);
   }
 
   /**
@@ -31,6 +30,6 @@ export class Users implements ApiNamespace {
    * @returns
    */
   watchedShows(userId: string, accessToken?: string) {
-    return getWatchedShows(this.client, userId, accessToken);
+    return getWatchedShows(this.config, userId, accessToken);
   }
 }

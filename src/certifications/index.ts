@@ -1,15 +1,14 @@
-import { AxiosInstance } from 'axios';
-import { ApiNamespace } from '../client';
+import { ApiConfig, ApiNamespace } from '../client';
 import { listCertifications } from './list';
 
 /**
  * Certifications api namespace
  */
 export class Certifications implements ApiNamespace {
-  client: AxiosInstance;
+  config: ApiConfig;
 
-  constructor(client: AxiosInstance) {
-    this.client = client;
+  constructor(config: ApiConfig) {
+    this.config = config;
   }
 
   /**
@@ -17,7 +16,7 @@ export class Certifications implements ApiNamespace {
    * @returns
    */
   listMovies() {
-    return listCertifications(this.client);
+    return listCertifications(this.config);
   }
 
   /**
@@ -25,6 +24,6 @@ export class Certifications implements ApiNamespace {
    * @returns
    */
   listShows() {
-    return listCertifications(this.client);
+    return listCertifications(this.config);
   }
 }
