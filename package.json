@@ -17,12 +17,12 @@
     "sdk"
   ],
   "scripts": {
-    "build": "tsc",
-    "build:check": "tsc --noEmit",
+    "build": "tsc src/**/*.ts",
+    "build:check": "yarn build --noEmit",
     "build:docs": "typedoc --options typedoc.json",
     "prepack": "yarn build && npmignore --auto",
     "prepare": "husky install",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint src/**/*.ts test/**/*.spec.ts",
     "lint:fix": "eslint src/**/*.ts --quiet --fix",
     "example": "node example/index.js",
     "test": "nyc mocha -r ts-node/register test/**/*.spec.ts"
