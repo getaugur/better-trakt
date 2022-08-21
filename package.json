@@ -17,13 +17,15 @@
     "sdk"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc src/**/*.ts",
+    "build:check": "yarn build --noEmit",
     "build:docs": "typedoc --options typedoc.json",
     "prepack": "yarn build && npmignore --auto",
     "prepare": "husky install",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint src/**/*.ts test/**/*.spec.ts",
     "lint:fix": "eslint src/**/*.ts --quiet --fix",
-    "example": "node example/index.js"
+    "example": "node example/index.js",
+    "test": "nyc mocha -r ts-node/register test/**/*.spec.ts"
   },
   "dependencies": {
     "axios": "^0.27.2"
@@ -31,14 +33,21 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^9.1.1",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
+    "chai": "^4.3.6",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.0",
+    "mocha": "^10.0.0",
     "npmignore": "^0.3.0",
+    "nyc": "^15.1.0",
     "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
     "typedoc": "^0.23.10",
     "typedoc-plugin-extras": "^2.3.0",
     "typedoc-plugin-mdn-links": "^2.0.0",
