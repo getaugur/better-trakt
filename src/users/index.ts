@@ -1,4 +1,5 @@
 import { ApiConfig, ApiNamespace } from '../client';
+import { checkRequiredArg } from '../utils/requiredArg';
 import { getWatchedMovies, getWatchedShows } from './watched';
 
 /**
@@ -19,6 +20,8 @@ export class Users implements ApiNamespace {
    * @returns
    */
   watchedMovies(userId: string, accessToken?: string) {
+    checkRequiredArg(userId, 'userId', 'string');
+
     return getWatchedMovies(this.config, userId, accessToken);
   }
 
@@ -30,6 +33,8 @@ export class Users implements ApiNamespace {
    * @returns
    */
   watchedShows(userId: string, accessToken?: string) {
+    checkRequiredArg(userId, 'userId', 'string');
+
     return getWatchedShows(this.config, userId, accessToken);
   }
 }

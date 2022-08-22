@@ -1,4 +1,5 @@
 import { ApiConfig, ApiNamespace } from '../client';
+import { checkRequiredArg } from '../utils/requiredArg';
 import { getMoviePeople, getShowPeople } from './people';
 import { getMovieSummary_Full, getShowSummary_Full } from './summary';
 
@@ -18,6 +19,8 @@ export class Shows implements ApiNamespace {
    * @returns
    */
   summary(showId: string) {
+    checkRequiredArg(showId, 'showId', 'string');
+
     return getShowSummary_Full(this.config, showId);
   }
 
@@ -27,6 +30,8 @@ export class Shows implements ApiNamespace {
    * @returns
    */
   people(showId: string) {
+    checkRequiredArg(showId, 'showId', 'string');
+
     return getShowPeople(this.config, showId);
   }
 }
@@ -47,6 +52,8 @@ export class Movies implements ApiNamespace {
    * @returns
    */
   summary(movieId: string) {
+    checkRequiredArg(movieId, 'movieId', 'string');
+
     return getMovieSummary_Full(this.config, movieId);
   }
 
@@ -56,6 +63,8 @@ export class Movies implements ApiNamespace {
    * @returns
    */
   people(movieId: string) {
+    checkRequiredArg(movieId, 'movieId', 'string');
+
     return getMoviePeople(this.config, movieId);
   }
 }
