@@ -30,6 +30,17 @@ describe('Users', function () {
       });
       expect(users.watchedMovies).to.be.a('function');
     });
+
+    it('should throw a TypeError', function () {
+      const users = new Users({
+        client: axios.create(),
+        apiUrl: '',
+      });
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(users.watchedMovies).to.throw(TypeError);
+    });
   });
 
   describe('#watchedShows', function () {
@@ -39,6 +50,17 @@ describe('Users', function () {
         apiUrl: '',
       });
       expect(users.watchedShows).to.be.a('function');
+    });
+
+    it('should throw a TypeError', function () {
+      const users = new Users({
+        client: axios.create(),
+        apiUrl: '',
+      });
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(users.watchedShows).to.throw(TypeError);
     });
   });
 });

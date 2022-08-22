@@ -31,6 +31,17 @@ describe('Media', function () {
         });
         expect(shows.summary).to.be.a('function');
       });
+
+      it('should throw a TypeError', function () {
+        const shows = new Shows({
+          client: axios.create(),
+          apiUrl: '',
+        });
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        expect(shows.summary).to.throw(TypeError);
+      });
     });
 
     describe('#people', function () {
@@ -40,6 +51,17 @@ describe('Media', function () {
           apiUrl: '',
         });
         expect(shows.people).to.be.a('function');
+      });
+
+      it('should throw a TypeError', function () {
+        const shows = new Shows({
+          client: axios.create(),
+          apiUrl: '',
+        });
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        expect(shows.people).to.throw(TypeError);
       });
     });
   });
@@ -68,6 +90,17 @@ describe('Media', function () {
         });
         expect(movies.summary).to.be.a('function');
       });
+
+      it('should throw a TypeError', function () {
+        const movies = new Movies({
+          client: axios.create(),
+          apiUrl: '',
+        });
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        expect(movies.summary).to.throw(TypeError);
+      });
     });
 
     describe('#people', function () {
@@ -77,6 +110,17 @@ describe('Media', function () {
           apiUrl: '',
         });
         expect(movies.people).to.be.a('function');
+      });
+
+      it('should throw a TypeError', function () {
+        const movies = new Movies({
+          client: axios.create(),
+          apiUrl: '',
+        });
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        expect(movies.people).to.throw(TypeError);
       });
     });
   });
