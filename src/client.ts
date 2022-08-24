@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { Certifications } from './certifications';
 import { Countries } from './countries';
 import { Genres } from './genres';
+import { Languages } from './languages';
 import { Movies, Shows } from './media';
 // api methods
 import { Users } from './users';
@@ -123,6 +124,11 @@ export class Trakt {
    */
   readonly genres: Genres;
 
+  /**
+   * Languages api
+   */
+  readonly languages: Languages;
+
   constructor(settings: TraktSettings) {
     // apply settings
     this.settings = {
@@ -154,5 +160,6 @@ export class Trakt {
     this.certifications = new Certifications(apiConfig);
     this.countries = new Countries(apiConfig);
     this.genres = new Genres(apiConfig);
+    this.languages = new Languages(apiConfig);
   }
 }
