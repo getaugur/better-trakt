@@ -9,7 +9,10 @@ export class Users implements ApiNamespace {
   config: ApiConfig;
 
   constructor(config: ApiConfig) {
-    this.config = config;
+    this.config = {
+      apiUrl: `${config.apiUrl}/users`,
+      client: config.client,
+    };
   }
 
   /**

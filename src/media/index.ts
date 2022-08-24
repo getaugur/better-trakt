@@ -10,7 +10,10 @@ export class Shows implements ApiNamespace {
   config: ApiConfig;
 
   constructor(config: ApiConfig) {
-    this.config = config;
+    this.config = {
+      apiUrl: `${config.apiUrl}/shows`,
+      client: config.client,
+    };
   }
 
   /**
@@ -43,7 +46,10 @@ export class Movies implements ApiNamespace {
   config: ApiConfig;
 
   constructor(config: ApiConfig) {
-    this.config = config;
+    this.config = {
+      apiUrl: `${config.apiUrl}/movies`,
+      client: config.client,
+    };
   }
 
   /**

@@ -8,7 +8,10 @@ export class Countries implements ApiNamespace {
   config: ApiConfig;
 
   constructor(config: ApiConfig) {
-    this.config = config;
+    this.config = {
+      apiUrl: `${config.apiUrl}/countries`,
+      client: config.client,
+    };
   }
 
   /**
