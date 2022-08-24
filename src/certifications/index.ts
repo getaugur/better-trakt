@@ -8,7 +8,10 @@ export class Certifications implements ApiNamespace {
   config: ApiConfig;
 
   constructor(config: ApiConfig) {
-    this.config = config;
+    this.config = {
+      apiUrl: `${config.apiUrl}/certifications`,
+      client: config.client,
+    };
   }
 
   /**
