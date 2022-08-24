@@ -4,6 +4,7 @@ import { Countries } from './countries';
 import { Genres } from './genres';
 import { Languages } from './languages';
 import { Movies, Shows } from './media';
+import { Networks } from './networks';
 // api methods
 import { Users } from './users';
 
@@ -129,6 +130,11 @@ export class Trakt {
    */
   readonly languages: Languages;
 
+  /**
+   * Networks api
+   */
+  readonly networks: Networks;
+
   constructor(settings: TraktSettings) {
     // apply settings
     this.settings = {
@@ -161,5 +167,6 @@ export class Trakt {
     this.countries = new Countries(apiConfig);
     this.genres = new Genres(apiConfig);
     this.languages = new Languages(apiConfig);
+    this.networks = new Networks(apiConfig);
   }
 }
