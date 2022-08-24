@@ -6,7 +6,7 @@ import { expect } from 'chai';
 
 import { Countries } from '../src/countries';
 
-describe('Certifications', function () {
+describe('Countries', function () {
   describe('Class', function () {
     it('should be a function', function () {
       expect(Countries).to.be.a('function');
