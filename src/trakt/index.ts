@@ -5,3 +5,4 @@ export * from './people';
 export * from './certifications';
 export * from './countries';
 export * from './genres';
+export * from './languages';
