@@ -4,42 +4,42 @@
 import axios from 'axios';
 import { expect } from 'chai';
 
-import { Countries } from '../src/countries';
+import { Genres } from '../src/genres';
 
-describe('Countries', function () {
+describe('Genres', function () {
   describe('Class', function () {
     it('should be a function', function () {
-      expect(Countries).to.be.a('function');
+      expect(Genres).to.be.a('function');
     });
 
-    it('should be a Countries Class', function () {
-      const countries = new Countries({
+    it('should be a Genres Class', function () {
+      const genres = new Genres({
         client: axios.create(),
         apiUrl: '',
       });
 
-      expect(countries).to.be.instanceOf(Countries);
+      expect(genres).to.be.instanceOf(Genres);
     });
   });
 
   describe('#listMovies', function () {
     it('should be a function', function () {
-      const countries = new Countries({
+      const genres = new Genres({
         client: axios.create(),
         apiUrl: '',
       });
 
-      expect(countries.listMovies).to.be.a('function');
+      expect(genres.listMovies).to.be.a('function');
     });
   });
 
   describe('#listShows', function () {
     it('should be a function', function () {
-      const countries = new Countries({
+      const genres = new Genres({
         client: axios.create(),
         apiUrl: '',
       });
-      expect(countries.listShows).to.be.a('function');
+      expect(genres.listShows).to.be.a('function');
     });
   });
 });
