@@ -53,7 +53,7 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 | Languages                |    ✅     |
 | Lists                    |    ❌     |
 | Movies                   |    🚧     |
-| Networks                 |    ❌     |
+| Networks                 |    ✅     |
 | People                   |    ❌     |
 | Recommendations          |    ❌     |
 | Scrobble                 |    ❌     |
