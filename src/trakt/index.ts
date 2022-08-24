@@ -4,3 +4,4 @@ export * from './summary';
 export * from './people';
 export * from './certifications';
 export * from './countries';
+export * from './genres';

@@ -49,7 +49,7 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 | Certifications           |    ✅     |
 | Comments                 |    ❌     |
 | Countries                |    ✅     |
-| Genres                   |    ❌     |
+| Genres                   |    ✅     |
 | Languages                |    ❌     |
 | Lists                    |    ❌     |
 | Movies                   |    🚧     |
