@@ -12,7 +12,7 @@ describe('Users', function () {
       expect(Users).to.be.a('function');
     });
 
-    it('should be a Certifications Class', function () {
+    it('should be a Users Class', function () {
       const users = new Users({
         client: axios.create(),
         apiUrl: '',

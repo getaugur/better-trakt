@@ -13,7 +13,7 @@ describe('Media', function () {
         expect(Shows).to.be.a('function');
       });
 
-      it('should be a Certifications Class', function () {
+      it('should be a Shows Class', function () {
         const shows = new Shows({
           client: axios.create(),
           apiUrl: '',
@@ -72,7 +72,7 @@ describe('Media', function () {
         expect(Movies).to.be.a('function');
       });
 
-      it('should be a Certifications Class', function () {
+      it('should be a Movies Class', function () {
         const movies = new Movies({
           client: axios.create(),
           apiUrl: '',
