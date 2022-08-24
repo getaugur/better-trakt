@@ -48,7 +48,7 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 | Checkin                  |        :x:         |
 | Certifications           | :white_check_mark: |
 | Comments                 |        :x:         |
-| Countries                |        :x:         |
+| Countries                | :white_check_mark: |
 | Genres                   |        :x:         |
 | Languages                |        :x:         |
 | Lists                    |        :x:         |
