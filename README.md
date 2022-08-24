@@ -31,38 +31,38 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 
 ### Runtimes
 
-| Runtime |       Supported        |
-| ------- | :--------------------: |
-| Node.js |   :white_check_mark:   |
-| Browser | :white_check_mark:[^1] |
+| Runtime | Supported |
+| ------- | :-------: |
+| Node.js |    ✅     |
+| Browser |  ✅[^1]   |
 
 [^1]: See [Axios's supported browsers](https://github.com/axios/axios/#browser-support)
 
 ### Trakt Api
 
-| Runtime                  |     Supported      |
-| ------------------------ | :----------------: |
-| Authentication - OAuth   |        :x:         |
-| Authentication - Devices |        :x:         |
-| Calendars                |        :x:         |
-| Checkin                  |        :x:         |
-| Certifications           | :white_check_mark: |
-| Comments                 |        :x:         |
-| Countries                | :white_check_mark: |
-| Genres                   |        :x:         |
-| Languages                |        :x:         |
-| Lists                    |        :x:         |
-| Movies                   |   :construction:   |
-| Networks                 |        :x:         |
-| People                   |        :x:         |
-| Recommendations          |        :x:         |
-| Scrobble                 |        :x:         |
-| Search                   |        :x:         |
-| Shows                    |   :construction:   |
-| Seasons                  |        :x:         |
-| Episodes                 |        :x:         |
-| Sync                     |        :x:         |
-| Users                    |   :construction:   |
+| Runtime                  | Supported |
+| ------------------------ | :-------: |
+| Authentication - OAuth   |    ❌     |
+| Authentication - Devices |    ❌     |
+| Calendars                |    ❌     |
+| Checkin                  |    ❌     |
+| Certifications           |    ✅     |
+| Comments                 |    ❌     |
+| Countries                |    ✅     |
+| Genres                   |    ❌     |
+| Languages                |    ❌     |
+| Lists                    |    ❌     |
+| Movies                   |    🚧     |
+| Networks                 |    ❌     |
+| People                   |    ❌     |
+| Recommendations          |    ❌     |
+| Scrobble                 |    ❌     |
+| Search                   |    ❌     |
+| Shows                    |    🚧     |
+| Seasons                  |    ❌     |
+| Episodes                 |    ❌     |
+| Sync                     |    ❌     |
+| Users                    |    🚧     |
 
 ## Docs
 
