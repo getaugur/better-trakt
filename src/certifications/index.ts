@@ -16,7 +16,7 @@ export class Certifications implements ApiNamespace {
    * @returns
    */
   listMovies() {
-    return listCertifications(this.config);
+    return listCertifications(this.config, 'movies');
   }
 
   /**
@@ -24,6 +24,6 @@ export class Certifications implements ApiNamespace {
    * @returns
    */
   listShows() {
-    return listCertifications(this.config);
+    return listCertifications(this.config, 'shows');
   }
 }
