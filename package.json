@@ -14,7 +14,9 @@
   "keywords": [
     "trakt",
     "trakt.tv",
-    "sdk"
+    "sdk",
+    "front-end",
+    "backend"
   ],
   "scripts": {
     "build": "tsc",
