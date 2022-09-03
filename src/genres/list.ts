@@ -6,5 +6,5 @@ export async function listGenres({ client, apiUrl }: ApiConfig, type: 'movies' |
   const url = `${apiUrl}/${type}`;
   const response = await fetch<Genre[]>(client, url);
 
-  return response.data;
+  return response;
 }

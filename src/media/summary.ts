@@ -6,12 +6,12 @@ export async function getShowSummary_Full({ client, apiUrl }: ApiConfig, showId:
   const url = `${apiUrl}/${showId}?extended=full`;
   const response = await fetch<ShowSummary_Full>(client, url);
 
-  return response.data;
+  return response;
 }
 
 export async function getMovieSummary_Full({ client, apiUrl }: ApiConfig, movieId: string) {
   const url = `${apiUrl}/${movieId}?extended=full`;
   const response = await fetch<MovieSummary_Full>(client, url);
 
-  return response.data;
+  return response;
 }

@@ -6,5 +6,5 @@ export async function listCountries({ client, apiUrl }: ApiConfig, type: 'movies
   const url = `${apiUrl}/${type}`;
   const response = await fetch<Country[]>(client, url);
 
-  return response.data;
+  return response;
 }

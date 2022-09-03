@@ -6,5 +6,5 @@ export async function listLanguages({ client, apiUrl }: ApiConfig, type: 'movies
   const url = `${apiUrl}/${type}`;
   const response = await fetch<Language[]>(client, url);
 
-  return response.data;
+  return response;
 }
