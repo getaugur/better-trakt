@@ -36,7 +36,7 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 | Node.js |    ✅     |
 | Browser |  ✅[^1]   |
 
-[^1]: See [Axios's supported browsers](https://github.com/axios/axios/#browser-support)
+[^1]: See [Axios's supported browsers](https://github.com/axios/axios/#browser-support), _might_ also require a transpiler like [babel](https://babeljs.io/), [esbuild](https://esbuild.github.io/), etc.
 
 ### Trakt Api
 
