@@ -6,5 +6,5 @@ export async function listNetworks({ client, apiUrl }: ApiConfig) {
   const url = `${apiUrl}`;
   const response = await fetch<Network[]>(client, url);
 
-  return response.data;
+  return response;
 }

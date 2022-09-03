@@ -6,5 +6,5 @@ export async function listCertifications({ client, apiUrl }: ApiConfig, type: 'm
   const url = `${apiUrl}/${type}`;
   const response = await fetch<CertificationList>(client, url);
 
-  return response.data;
+  return response;
 }

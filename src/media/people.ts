@@ -6,12 +6,12 @@ export async function getShowPeople({ client, apiUrl }: ApiConfig, showId: strin
   const url = `${apiUrl}/${showId}?extended=full`;
   const response = await fetch<ShowPeople>(client, url);
 
-  return response.data;
+  return response;
 }
 
 export async function getMoviePeople({ client, apiUrl }: ApiConfig, movieId: string) {
   const url = `${apiUrl}/${movieId}?extended=full`;
   const response = await fetch<MoviePeople>(client, url);
 
-  return response.data;
+  return response;
 }

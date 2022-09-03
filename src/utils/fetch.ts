@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosRequestHeaders } from 'axios';
 
-export async function fetch<T>(client: AxiosInstance, url: string, accessToken?: string) {
+export async function fetch<T>(client: AxiosInstance, url: string, accessToken?: string): Promise<T | undefined> {
   const headers: AxiosRequestHeaders = {};
 
   if (accessToken !== undefined) headers['Authorization'] = `Bearer ${accessToken}`;
@@ -10,5 +10,5 @@ export async function fetch<T>(client: AxiosInstance, url: string, accessToken?:
     // parseJson: (text: string) => Bourne.parse(text),
   });
 
-  return response;
+  return response.data;
 }
