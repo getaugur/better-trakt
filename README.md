@@ -31,6 +31,8 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 
 ## Compatibility
 
+✅: Full Support | 🚧: Partial Support | ❌: No Support
+
 ### Runtimes
 
 | Runtime | Supported |
