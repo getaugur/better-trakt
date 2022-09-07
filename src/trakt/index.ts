@@ -1,4 +1,4 @@
-export * from './watched';
+export * from './users';
 export * from './traktTypes';
 export * from './summary';
 export * from './people';
