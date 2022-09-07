@@ -1,4 +1,4 @@
-import { TraktApiShowSeason, TraptApiContent } from './traktTypes';
+import { TraktApiIds, TraktApiShowSeason, TraptApiContent } from './traktTypes';
 
 /**
  * Shared data between watched movies and shows
@@ -22,4 +22,16 @@ export interface WatchedMovie extends WatchedBase {
 export interface WatchedShow extends WatchedBase {
   show: TraptApiContent;
   seasons?: TraktApiShowSeason[];
+}
+
+/**
+ * A user's profile
+ */
+export interface UserProfile {
+  username: string;
+  private: boolean;
+  name: string;
+  vip: boolean;
+  vip_ep: boolean;
+  ids: TraktApiIds;
 }
