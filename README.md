@@ -4,6 +4,8 @@
 
 > A Trakt.tv SDK for the modern age
 
+Designed to minimize lock-in, and improve type safety, Better Trakt is a SDK built to scale. With robust Browser & Node.js support, high test coverage, and a plethra of QOL features like Trakt specific http errors, Better Trakt is a best in class SDK.
+
 ## Install
 
 ```bash
@@ -67,10 +69,6 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 ## Docs
 
 Docs for the latest release can be found at [https://getaugur.github.io/better-trakt/](https://getaugur.github.io/better-trakt/). For other versions simply run `yarn build:docs` in the repo.
-
-## Trakt Api Shenanigans
-
-This sdk does its best to prove accurate typings for the api, but Trakt's Api has a lot on **undocumented behavior**. For this reason, it may just decide to **not** give you a random key, please be aware of this.
 
 ## ⚠️ Alpha Notice
 
