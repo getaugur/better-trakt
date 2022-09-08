@@ -1,5 +1,8 @@
 import { TraptApiContent } from './traktTypes';
 
+/**
+ * Everything trakt knows about all media
+ */
 export interface Summary_Full extends TraptApiContent {
   overview: string;
   runtime: number;
@@ -16,6 +19,9 @@ export interface Summary_Full extends TraptApiContent {
   certification: string;
 }
 
+/**
+ * Everything trakt knows about all shows
+ */
 export interface ShowSummary_Full extends Summary_Full {
   first_aired: string;
   airs: {
@@ -27,6 +33,9 @@ export interface ShowSummary_Full extends Summary_Full {
   network: string;
 }
 
+/**
+ * Everything trakt knows about all movies
+ */
 export interface MovieSummary_Full extends Summary_Full {
   tagline: string;
   released: string;

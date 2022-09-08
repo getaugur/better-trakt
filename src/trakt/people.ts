@@ -4,11 +4,17 @@ import { TraktApiIds } from './traktTypes';
 // Cast and Crew
 // ========================================
 
+/**
+ * People who work on a movie
+ */
 export interface MoviePeople {
   cast?: MovieCastMember[];
   crew?: MovieCrew;
 }
 
+/**
+ * People who work on a show
+ */
 export interface ShowPeople {
   cast?: ShowCastMember[];
   crew?: ShowCrew;
@@ -18,6 +24,9 @@ export interface ShowPeople {
 // Crew jobs
 // ========================================
 
+/**
+ * Movie crew broken up by department
+ */
 export interface MovieCrew {
   production?: MovieCrewMember[];
   art?: MovieCrewMember[];
@@ -32,6 +41,9 @@ export interface MovieCrew {
   editing?: MovieCrewMember[];
 }
 
+/**
+ * Show crew broken up by department
+ */
 export interface ShowCrew {
   art?: ShowCrewMember[];
   production?: ShowCrewMember[];
@@ -50,12 +62,19 @@ export interface ShowCrew {
 // Cast Member
 // ========================================
 
+/**
+ * Cast member in a movie
+ */
 export interface MovieCastMember {
   characters: string[];
   person: Person;
 }
 
-// same as movie but with episode count
+/**
+ * Cast member in a show
+ * @remarks
+ * Same as MovieCastMember but with episode count
+ */
 export interface ShowCastMember extends MovieCastMember {
   episode_count: number;
 }
@@ -64,12 +83,19 @@ export interface ShowCastMember extends MovieCastMember {
 // Crew Member
 // ========================================
 
+/**
+ * Crew member in a movie
+ */
 export interface MovieCrewMember {
   jobs: string[];
   person: Person;
 }
 
-// same as movie but with episode count
+/**
+ * Cew member in a show
+ * @remarks
+ * Same as MovieCrewMember but with episode count
+ */
 export interface ShowCrewMember extends MovieCrewMember {
   episode_count: number;
 }
@@ -77,6 +103,10 @@ export interface ShowCrewMember extends MovieCrewMember {
 // ========================================
 // Generic Person obj
 // ========================================
+
+/**
+ * Just a generic person obj
+ */
 export interface Person {
   name: string;
   ids: TraktApiIds;
