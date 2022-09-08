@@ -4,7 +4,16 @@
 
 > A Trakt.tv SDK for the modern age
 
-Designed to minimize lock-in, and improve type safety, Better Trakt is a SDK built to scale. With robust Browser & Node.js support, high test coverage, and a plethra of QOL features like Trakt specific http errors, Better Trakt is a best in class SDK.
+## Features
+
+- 🖵 Browser & Node.js support
+- 🔒 No auth lock-in
+- 👥 Able to handle > 1 user [^1]
+- 🌲 Tree Shakable
+- 🌐 Trakt specific http errors
+- 🏗️ Built with TypeScript
+
+[^1]: This really shouldn't need be a "feature" but all the other SDKs can only handle 1 user at a time because who knows why?
 
 ## Install
 
@@ -38,9 +47,9 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 | Runtime | Supported |
 | ------- | :-------: |
 | Node.js |    ✅     |
-| Browser |  ✅[^1]   |
+| Browser |  ✅[^2]   |
 
-[^1]: See [Axios's supported browsers](https://github.com/axios/axios/#browser-support), _might_ also require a transpiler like [babel](https://babeljs.io/), [esbuild](https://esbuild.github.io/), etc.
+[^2]: See [Axios's supported browsers](https://github.com/axios/axios/#browser-support), _might_ also require a transpiler like [babel](https://babeljs.io/), [esbuild](https://esbuild.github.io/), etc.
 
 ### Trakt Api
 
