@@ -19,6 +19,19 @@
 <p>A Trakt.tv SDK for the modern age</p>
 </blockquote>
 
+<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+  <h2>Features</h2>
+</a>
+<ul>
+<li>🖵 Browser &amp; Node.js support</li>
+<li>🔒 No auth lock-in</li>
+<li>👥 Able to handle &gt; 1 user [^1]</li>
+<li>🌲 Tree Shakable</li>
+<li>🌐 Trakt specific http errors</li>
+<li>🏗️ Built with TypeScript</li>
+</ul>
+<p>[^1]: This really shouldn&#39;t need be a &quot;feature&quot; but all the other SDKs can only handle 1 user at a time because who knows why?</p>
+
 <a href="#install" id="install" style="color: inherit; text-decoration: none;">
   <h2>Install</h2>
 </a>
@@ -34,6 +47,7 @@
 <a href="#compatibility" id="compatibility" style="color: inherit; text-decoration: none;">
   <h2>Compatibility</h2>
 </a>
+<p>✅: Full Support | 🚧: Partial Support | ❌: No Support</p>
 
 <a href="#runtimes" id="runtimes" style="color: inherit; text-decoration: none;">
   <h3>Runtimes</h3>
@@ -51,10 +65,10 @@
 </tr>
 <tr>
 <td>Browser</td>
-<td align="center">✅[^1]</td>
+<td align="center">✅[^2]</td>
 </tr>
 </tbody></table>
-<p>[^1]: See <a href="https://github.com/axios/axios/#browser-support">Axios&#39;s supported browsers</a></p>
+<p>[^2]: See <a href="https://github.com/axios/axios/#browser-support">Axios&#39;s supported browsers</a>, <em>might</em> also require a transpiler like <a href="https://babeljs.io/">babel</a>, <a href="https://esbuild.github.io/">esbuild</a>, etc.</p>
 
 <a href="#trakt-api" id="trakt-api" style="color: inherit; text-decoration: none;">
   <h3>Trakt Api</h3>
@@ -157,11 +171,6 @@
 </a>
 <p>Docs for the latest release can be found at <a href="https://getaugur.github.io/better-trakt/">https://getaugur.github.io/better-trakt/</a>. For other versions simply run <code>yarn build:docs</code> in the repo.</p>
 
-<a href="#trakt-api-shenanigans" id="trakt-api-shenanigans" style="color: inherit; text-decoration: none;">
-  <h2>Trakt Api Shenanigans</h2>
-</a>
-<p>This sdk does its best to prove accurate typings for the api, but Trakt&#39;s Api has a lot on <strong>undocumented behavior</strong>. For this reason, it may just decide to <strong>not</strong> give you a random key, please be aware of this.</p>
-
 <a href="#⚠️-alpha-notice" id="⚠️-alpha-notice" style="color: inherit; text-decoration: none;">
   <h2>⚠️ Alpha Notice</h2>
 </a>
@@ -227,5 +236,5 @@
 <li class="tsd-kind-interface"><a href="interfaces/WatchedMovie.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Watched<wbr/>Movie</a></li>
 <li class="tsd-kind-interface"><a href="interfaces/WatchedShow.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Watched<wbr/>Show</a></li></ul></nav></div></div>
 <div class="container tsd-generator">
-<p style="line-height: 28px;">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.23.10<br><span id="generation-date"></span><script>window.GENERATION_DATE=1661370707948;document.getElementById('generation-date').innerText=new Intl.DateTimeFormat(navigator.language, {dateStyle: 'medium',timeStyle: 'long'}).format(window.GENERATION_DATE)</script></p></div>
+<p style="line-height: 28px;">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.23.10<br><span id="generation-date"></span><script>window.GENERATION_DATE=1662598525660;document.getElementById('generation-date').innerText=new Intl.DateTimeFormat(navigator.language, {dateStyle: 'medium',timeStyle: 'long'}).format(window.GENERATION_DATE)</script></p></div>
 <div class="overlay"></div><script src="assets/main.js"></script></body></html>
