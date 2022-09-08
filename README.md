@@ -13,7 +13,7 @@
 - 🌐 Trakt specific http errors
 - 🏗️ Built with TypeScript
 
-[^1]: This really shouldn't need be a "feature" but all the other SDKs can only handle 1 user at a time because who knows why?
+[^1]: This really shouldn't need be a "feature," but all the other SDKs can only handle 1 user at a time so it is.
 
 ## Install
 
