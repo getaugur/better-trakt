@@ -13,7 +13,7 @@ export interface TraktApiIds {
 /**
  * A generic media object used by trakt
  */
-export interface TraptApiContent {
+export interface TraktApiContent {
   title: string;
   year: number;
   ids: TraktApiIds;

@@ -1,4 +1,4 @@
-import { TraktApiIds, TraptApiContent } from './traktTypes';
+import { TraktApiIds, TraktApiContent } from './traktTypes';
 import { UserProfile } from './users';
 
 /**
@@ -49,8 +49,8 @@ export interface ListItem {
   id: number;
   listed_at: string;
   type: ListItemType;
-  movie?: TraptApiContent;
-  show?: TraptApiContent;
+  movie?: TraktApiContent;
+  show?: TraktApiContent;
   season?: ListSeason;
   episode?: ListEpisode;
   person?: ListPerson;
