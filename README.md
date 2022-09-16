@@ -64,7 +64,7 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 | Countries                |    ✅     |
 | Genres                   |    ✅     |
 | Languages                |    ✅     |
-| Lists                    |    ❌     |
+| Lists                    |    ✅     |
 | Movies                   |    🚧     |
 | Networks                 |    ✅     |
 | People                   |    ❌     |
