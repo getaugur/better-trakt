@@ -1,7 +1,7 @@
 import { ApiConfig, ApiNamespace } from '../client';
+import { MoviePeople, MovieSummary_Full, ShowPeople, ShowSummary_Full } from '../trakt';
+import { fetch } from '../utils';
 import { checkRequiredArg } from '../utils/requiredArg';
-import { getMoviePeople, getShowPeople } from './people';
-import { getMovieSummary_Full, getShowSummary_Full } from './summary';
 
 /**
  * Shows api namespace
@@ -21,10 +21,10 @@ export class Shows implements ApiNamespace {
    * @param showId show id
    * @returns
    */
-  summary(showId: string) {
+  summary({ showId }: { showId: string }) {
     checkRequiredArg(showId, 'showId', 'string');
 
-    return getShowSummary_Full(this.config, showId);
+    return getMediaSummary_Full<ShowSummary_Full>(this.config, showId);
   }
 
   /**
@@ -32,10 +32,10 @@ export class Shows implements ApiNamespace {
    * @param showId show id
    * @returns
    */
-  people(showId: string) {
+  people({ showId }: { showId: string }) {
     checkRequiredArg(showId, 'showId', 'string');
 
-    return getShowPeople(this.config, showId);
+    return getMediaPeople<ShowPeople>(this.config, showId);
   }
 }
 
@@ -44,7 +44,6 @@ export class Shows implements ApiNamespace {
  */
 export class Movies implements ApiNamespace {
   config: ApiConfig;
-
   constructor(config: ApiConfig) {
     this.config = {
       apiUrl: `${config.apiUrl}/movies`,
@@ -57,10 +56,10 @@ export class Movies implements ApiNamespace {
    * @param movieId movie id
    * @returns
    */
-  summary(movieId: string) {
+  summary({ movieId }: { movieId: string }) {
     checkRequiredArg(movieId, 'movieId', 'string');
 
-    return getMovieSummary_Full(this.config, movieId);
+    return getMediaSummary_Full<MovieSummary_Full>(this.config, movieId);
   }
 
   /**
@@ -68,9 +67,37 @@ export class Movies implements ApiNamespace {
    * @param movieId movie id
    * @returns
    */
-  people(movieId: string) {
+  people({ movieId }: { movieId: string }) {
     checkRequiredArg(movieId, 'movieId', 'string');
 
-    return getMoviePeople(this.config, movieId);
+    return getMediaPeople<MoviePeople>(this.config, movieId);
   }
+}
+
+/**
+ *
+ * @param ApiConfig
+ * @param movieId
+ * @returns
+ * @internal
+ */
+export async function getMediaPeople<T>({ client, apiUrl }: ApiConfig, movieId: string) {
+  const url = `${apiUrl}/${movieId}?extended=full`;
+  const response = await fetch<T>(client, url);
+
+  return response;
+}
+
+/**
+ *
+ * @param ApiConfig
+ * @param showId
+ * @returns
+ * @internal
+ */
+export async function getMediaSummary_Full<T>({ client, apiUrl }: ApiConfig, showId: string) {
+  const url = `${apiUrl}/${showId}?extended=full`;
+  const response = await fetch<T>(client, url);
+
+  return response;
 }
