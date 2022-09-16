@@ -73,6 +73,8 @@ export interface ListPerson {
   ids: TraktApiIds;
 }
 
+export type ListCommentsSortBy = 'newest' | 'oldest' | 'likes' | 'replies';
+
 export interface ListComment {
   id: number;
   parent_id: number;
