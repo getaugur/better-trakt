@@ -1,5 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { listGenres } from './list';
+import { Genre } from '../trakt';
+import { fetch } from '../utils';
 
 /**
  * Genres api namespace
@@ -19,7 +20,7 @@ export class Genres implements ApiNamespace {
    * @returns
    */
   listMovies() {
-    return listGenres(this.config, 'movies');
+    return this.listGenres(this.config, 'movies');
   }
 
   /**
@@ -27,6 +28,13 @@ export class Genres implements ApiNamespace {
    * @returns
    */
   listShows() {
-    return listGenres(this.config, 'shows');
+    return this.listGenres(this.config, 'shows');
+  }
+
+  private async listGenres({ client, apiUrl }: ApiConfig, type: 'movies' | 'shows') {
+    const url = `${apiUrl}/${type}`;
+    const response = await fetch<Genre[]>(client, url);
+
+    return response;
   }
 }
