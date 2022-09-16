@@ -1,9 +1,9 @@
-import { TraptApiContent } from './traktTypes';
+import { TraktApiContent } from './traktTypes';
 
 /**
  * Everything trakt knows about all media
  */
-export interface Summary_Full extends TraptApiContent {
+export interface Summary_Full extends TraktApiContent {
   overview: string;
   runtime: number;
   country: string;
