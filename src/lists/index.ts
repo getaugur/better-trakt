@@ -1,5 +1,5 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { List, ListComment, ListCommentsSortBy, ListItemType, ListLike, PopularTrendingList } from '../trakt/lists';
+import { List, ListComment, ListCommentsSortBy, ListItemType, ListLike, PopularTrendingList } from '../trakt';
 import { fetch, Pagination } from '../utils';
 import { checkRequiredArg } from '../utils/requiredArg';
 
