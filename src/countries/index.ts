@@ -1,5 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { listCountries } from './list';
+import { Country } from '../trakt';
+import { fetch } from '../utils';
 
 /**
  * Countries api namespace
@@ -19,7 +20,7 @@ export class Countries implements ApiNamespace {
    * @returns
    */
   listMovies() {
-    return listCountries(this.config, 'movies');
+    return this.listCountries(this.config, 'movies');
   }
 
   /**
@@ -27,6 +28,13 @@ export class Countries implements ApiNamespace {
    * @returns
    */
   listShows() {
-    return listCountries(this.config, 'shows');
+    return this.listCountries(this.config, 'shows');
+  }
+
+  private async listCountries({ client, apiUrl }: ApiConfig, type: 'movies' | 'shows') {
+    const url = `${apiUrl}/${type}`;
+    const response = await fetch<Country[]>(client, url);
+
+    return response;
   }
 }
