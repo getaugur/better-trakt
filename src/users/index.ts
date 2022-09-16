@@ -22,7 +22,7 @@ export class Users implements ApiNamespace {
    * @param accessToken oauth access token for private accounts
    * @returns
    */
-  watchedMovies(userId: string, accessToken?: string) {
+  watchedMovies({ userId, accessToken }: { userId: string; accessToken?: string }) {
     checkRequiredArg(userId, 'userId', 'string');
 
     return getWatchedMedia<WatchedMovie[]>(this.config, userId, 'movies', accessToken);
@@ -35,7 +35,7 @@ export class Users implements ApiNamespace {
    * @param accessToken oauth access token for private accounts
    * @returns
    */
-  watchedShows(userId: string, accessToken?: string) {
+  watchedShows({ userId, accessToken }: { userId: string; accessToken?: string }) {
     checkRequiredArg(userId, 'userId', 'string');
 
     return getWatchedMedia<WatchedShow[]>(this.config, userId, 'shows', accessToken);
