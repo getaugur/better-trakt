@@ -1,5 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { listNetworks } from './list';
+import { Network } from '../trakt';
+import { fetch } from '../utils';
 
 /**
  * Networks api namespace
@@ -18,7 +19,10 @@ export class Networks implements ApiNamespace {
    * Gets list of all tv networks
    * @returns
    */
-  list() {
-    return listNetworks(this.config);
+  async list() {
+    const url = `${this.config.apiUrl}`;
+    const response = await fetch<Network[]>(this.config.client, url);
+
+    return response;
   }
 }

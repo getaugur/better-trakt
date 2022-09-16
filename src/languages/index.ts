@@ -1,5 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { listLanguages } from './list';
+import { Language } from '../trakt';
+import { fetch } from '../utils';
 
 /**
  * Languages api namespace
@@ -19,7 +20,7 @@ export class Languages implements ApiNamespace {
    * @returns
    */
   listMovies() {
-    return listLanguages(this.config, 'movies');
+    return this.listLanguages(this.config, 'movies');
   }
 
   /**
@@ -27,6 +28,13 @@ export class Languages implements ApiNamespace {
    * @returns
    */
   listShows() {
-    return listLanguages(this.config, 'shows');
+    return this.listLanguages(this.config, 'shows');
+  }
+
+  private async listLanguages({ client, apiUrl }: ApiConfig, type: 'movies' | 'shows') {
+    const url = `${apiUrl}/${type}`;
+    const response = await fetch<Language[]>(client, url);
+
+    return response;
   }
 }

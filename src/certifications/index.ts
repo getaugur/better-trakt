@@ -1,5 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { listCertifications } from './list';
+import { CertificationList } from '../trakt';
+import { fetch } from '../utils';
 
 /**
  * Certifications api namespace
@@ -19,7 +20,7 @@ export class Certifications implements ApiNamespace {
    * @returns
    */
   listMovies() {
-    return listCertifications(this.config, 'movies');
+    return this.listCertifications(this.config, 'movies');
   }
 
   /**
@@ -27,6 +28,13 @@ export class Certifications implements ApiNamespace {
    * @returns
    */
   listShows() {
-    return listCertifications(this.config, 'shows');
+    return this.listCertifications(this.config, 'shows');
+  }
+
+  private async listCertifications({ client, apiUrl }: ApiConfig, type: 'movies' | 'shows') {
+    const url = `${apiUrl}/${type}`;
+    const response = await fetch<CertificationList>(client, url);
+
+    return response;
   }
 }
