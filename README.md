@@ -53,7 +53,9 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 
 ### Trakt Api
 
-| Runtime                  | Supported |
+(All namespaces are planned, this is just what's currently supported.)
+
+| Namespace                | Supported |
 | ------------------------ | :-------: |
 | Authentication - OAuth   |    ❌     |
 | Authentication - Devices |    ❌     |
