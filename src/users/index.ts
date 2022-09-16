@@ -1,6 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { checkRequiredArg } from '../utils/requiredArg';
-import { getWatchedMovies, getWatchedShows } from './watched';
+import { WatchedMovie, WatchedShow } from '../trakt';
+import { fetch, checkRequiredArg } from '../utils';
 
 /**
  * Users api namespace
@@ -25,7 +25,7 @@ export class Users implements ApiNamespace {
   watchedMovies(userId: string, accessToken?: string) {
     checkRequiredArg(userId, 'userId', 'string');
 
-    return getWatchedMovies(this.config, userId, accessToken);
+    return getWatchedMedia<WatchedMovie[]>(this.config, userId, 'movies', accessToken);
   }
 
   /**
@@ -38,6 +38,18 @@ export class Users implements ApiNamespace {
   watchedShows(userId: string, accessToken?: string) {
     checkRequiredArg(userId, 'userId', 'string');
 
-    return getWatchedShows(this.config, userId, accessToken);
+    return getWatchedMedia<WatchedShow[]>(this.config, userId, 'shows', accessToken);
   }
+}
+
+export async function getWatchedMedia<T>(
+  { client, apiUrl }: ApiConfig,
+  userId: string,
+  type: 'movies' | 'shows',
+  accessToken?: string,
+) {
+  const url = `${apiUrl}/${userId}/watched/${type}`;
+  const response = await fetch<T>(client, url, { accessToken });
+
+  return response;
 }
