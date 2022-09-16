@@ -15,7 +15,16 @@ const client = new Trakt({
 // hack so we can use async
 (async () => {
   // console.log(await client.shows.summary('1'));
+  console.log(
+    trakt.buildUrl('https://google.com/', {
+      pagination: {
+        limit: 5,
+        page: 1,
+      },
+    }),
+  );
+  // await client.shows.summary('1');
 
-  console.log(await client.certifications.listMovies());
-  console.log(await client.certifications.listShows());
+  // console.log(await client.certifications.listMovies());
+  // console.log(await client.certifications.listShows());
 })();

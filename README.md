@@ -2,7 +2,18 @@
 
 [![GitHub license](https://img.shields.io/github/license/getaugur/better-trakt)](https://github.com/getaugur/better-trakt/blob/main/LICENSE) [![npm](https://img.shields.io/npm/v/better-trakt?logo=npm)](https://www.npmjs.com/package/better-trakt)
 
-> A Trakt.tv SDK for the modern age
+> A Trakt.tv client with native Typescript support and quality of life features
+
+## Features
+
+- 🖵 Browser & Node.js support
+- 🔒 No auth lock-in
+- 👥 Able to handle > 1 user [^1]
+- 🌲 Tree Shakable
+- 🌐 Trakt specific http errors
+- 🏗️ Built with TypeScript
+
+[^1]: This really shouldn't need be a "feature," but all the other SDKs can only handle 1 user at a time so it is.
 
 ## Install
 
@@ -29,14 +40,16 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 
 ## Compatibility
 
+✅: Full Support | 🚧: Partial Support | ❌: No Support
+
 ### Runtimes
 
 | Runtime | Supported |
 | ------- | :-------: |
 | Node.js |    ✅     |
-| Browser |  ✅[^1]   |
+| Browser |  ✅[^2]   |
 
-[^1]: See [Axios's supported browsers](https://github.com/axios/axios/#browser-support), _might_ also require a transpiler like [babel](https://babeljs.io/), [esbuild](https://esbuild.github.io/), etc.
+[^2]: See [Axios's supported browsers](https://github.com/axios/axios/#browser-support), _might_ also require a transpiler like [babel](https://babeljs.io/), [esbuild](https://esbuild.github.io/), etc.
 
 ### Trakt Api
 
@@ -67,10 +80,6 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 ## Docs
 
 Docs for the latest release can be found at [https://getaugur.github.io/better-trakt/](https://getaugur.github.io/better-trakt/). For other versions simply run `yarn build:docs` in the repo.
-
-## Trakt Api Shenanigans
-
-This sdk does its best to prove accurate typings for the api, but Trakt's Api has a lot on **undocumented behavior**. For this reason, it may just decide to **not** give you a random key, please be aware of this.
 
 ## ⚠️ Alpha Notice
 

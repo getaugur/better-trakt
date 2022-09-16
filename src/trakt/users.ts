@@ -21,7 +21,24 @@ export interface WatchedMovie extends WatchedBase {
  */
 export interface WatchedShow extends WatchedBase {
   show: TraptApiContent;
-  seasons?: TraktApiShowSeason[];
+  seasons?: WatchedShowSeason[];
+}
+
+/**
+ * A season for a watched show
+ */
+export interface WatchedShowSeason {
+  number: number;
+  episodes: WatchedShowEpisode[];
+}
+
+/**
+ * An episode for a watched show
+ */
+export interface WatchedShowEpisode {
+  number: number;
+  plays: number;
+  last_watched_at: string;
 }
 
 /**

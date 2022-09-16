@@ -1,3 +1,6 @@
+/**
+ * Std id object with all ids that can be provided
+ */
 export interface TraktApiIds {
   trakt: number;
   slug: string;
@@ -14,14 +17,4 @@ export interface TraptApiContent {
   title: string;
   year: number;
   ids: TraktApiIds;
-}
-
-export interface TraktApiShowEpisode {
-  number: number;
-  plays: number;
-  last_watched_at: string;
-}
-export interface TraktApiShowSeason {
-  number: number;
-  episodes: TraktApiShowEpisode[];
 }
