@@ -1,6 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
 import { CertificationList } from '../trakt';
-import { fetch } from '../utils';
+import { ApiResponse, fetch } from '../utils';
 
 /**
  * Certifications api namespace
@@ -16,18 +16,18 @@ export class Certifications implements ApiNamespace {
   }
 
   /**
-   * Gets list of movie certifications
+   * Get a list of all movie certifications, including names, slugs, and descriptions.
    * @returns
    */
-  listMovies() {
+  listMovies(): Promise<ApiResponse<CertificationList>> {
     return this.listCertifications(this.config, 'movies');
   }
 
   /**
-   * Gets list of show certifications
+   * Get a list of all show certifications, including names, slugs, and descriptions.
    * @returns
    */
-  listShows() {
+  listShows(): Promise<ApiResponse<CertificationList>> {
     return this.listCertifications(this.config, 'shows');
   }
 

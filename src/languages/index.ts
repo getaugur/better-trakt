@@ -1,6 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
 import { Language } from '../trakt';
-import { fetch } from '../utils';
+import { ApiResponse, fetch } from '../utils';
 
 /**
  * Languages api namespace
@@ -16,18 +16,18 @@ export class Languages implements ApiNamespace {
   }
 
   /**
-   * Gets list of all movie languages
+   * Get a list of all movie langauges, including names and codes.
    * @returns
    */
-  listMovies() {
+  listMovies(): Promise<ApiResponse<Language[]>> {
     return this.listLanguages(this.config, 'movies');
   }
 
   /**
-   * Gets list of all show languages
+   * Get a list of all show langauges, including names and codes.
    * @returns
    */
-  listShows() {
+  listShows(): Promise<ApiResponse<Language[]>> {
     return this.listLanguages(this.config, 'shows');
   }
 
