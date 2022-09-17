@@ -1,4 +1,4 @@
-import { TraktApiContent } from './traktTypes';
+import { TraktApiContent } from '../traktTypes';
 
 /**
  * Everything trakt knows about all media
