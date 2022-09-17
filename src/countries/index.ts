@@ -1,6 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
 import { Country } from '../trakt';
-import { fetch } from '../utils';
+import { ApiResponse, fetch } from '../utils';
 
 /**
  * Countries api namespace
@@ -16,18 +16,18 @@ export class Countries implements ApiNamespace {
   }
 
   /**
-   * Gets list of all movie countries
+   * Get a list of all movie countries, including names and codes.
    * @returns
    */
-  listMovies() {
+  listMovies(): Promise<ApiResponse<Country[]>> {
     return this.listCountries(this.config, 'movies');
   }
 
   /**
-   * Gets list of all show countries
+   * Get a list of all show countries, including names and codes.
    * @returns
    */
-  listShows() {
+  listShows(): Promise<ApiResponse<Country[]>> {
     return this.listCountries(this.config, 'shows');
   }
 
