@@ -1,6 +1,51 @@
 import { AxiosError, AxiosInstance, AxiosRequestHeaders, AxiosResponseHeaders } from 'axios';
 import { TraktHttpError } from './error';
 
+export interface Filters {
+  /**
+   * Search titles and descriptions.
+   * @example batman
+   */
+  query?: string;
+
+  /**
+   * 4 digit year or range of years.
+   * @example 2016
+   */
+  years?: string;
+
+  /**
+   * Genre slugs.
+   * @example action
+   * @see {@link Genre.slug | Genre slug}
+   */
+  genres?: string[];
+
+  /**
+   * 2 character language code.
+   * @example en
+   */
+  languages?: string[];
+
+  /**
+   * 2 character country code.
+   * @example us
+   */
+  countries?: string[];
+
+  /**
+   * Range in minutes.
+   * @example 30-90
+   */
+  runtimes?: string;
+
+  /**
+   * Studio slugs.
+   * @example marvel-studios
+   */
+  studios?: string[];
+}
+
 /**
  * Pagination Options
  */
@@ -59,6 +104,7 @@ export interface ApiResponse<T> {
 export interface FetchOptions {
   accessToken?: string;
   pagination?: Pagination;
+  filters?: Filters;
 }
 
 /**
