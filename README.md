@@ -35,8 +35,14 @@ const client = new Trakt({
   clientSecret: 'client secret',
 });
 
-const watchedMovies = client.users.watchedMovies('user id', 'access token');
+// get every movie a user has watched
+const watchedMovies = await client.users.watchedMovies({ userId: '1234', accessToken: 'abcd123' });
+
+// get the summary for the show with the trakt id of "1"
+const show1 = await client.shows.summary('1');
 ```
+
+_More examples in the [examples folder](https://github.com/getaugur/better-trakt/tree/main/example)._
 
 ## Compatibility
 
