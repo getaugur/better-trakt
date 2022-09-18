@@ -1,3 +1,4 @@
+const { TraktHttpError } = require('../dist/index');
 const trakt = require('../dist/index');
 const Trakt = trakt.Trakt;
 
@@ -87,4 +88,32 @@ const client = new Trakt({
       // ... plus some other stuff which you can see in the offical docs
     },
   };
+
+  // in the event a that trakt returns a non 200 status code,
+  // the response obj will look like this
+  const show353_err = {
+    // this is a demo TraktHttpError class,
+    // but still the exact error that will be
+    // returned if the http status code is know,
+    // else an other error will be throw
+    error: new TraktHttpError(500, {}, { 'Content-Type': 'application/json' }),
+
+    // headers of course is still returned
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  // so a 'proper' example would look like this
+
+  // check that there wasn't an error
+  // don't just check if there is data
+  if (show353.error === undefined && show353.data !== undefined) {
+    // now you can use the response data how you want
+
+    console.log(show353.data.title); // Game of Thrones
+  } else {
+    // handle the error
+    // can throw the error like:
+    // throw show353.error;
+    // or do whatever else you want to do
+  }
 })();
