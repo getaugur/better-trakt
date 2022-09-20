@@ -2,6 +2,9 @@ import { ApiConfig, ApiNamespace } from '../client';
 import {
   MoviePeople,
   MovieSummary_Full,
+  RecommendedMovie,
+  RecommendedPeriod,
+  RecommendedShow,
   ShowPeople,
   ShowSummary_Full,
   TraktApiContent,
@@ -77,10 +80,27 @@ export class Shows implements ApiNamespace {
   }): Promise<ApiResponse<TraktApiContent[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
-    return getPopularMedia(this.config, 'movies', { pagination, filters });
+    return getPopularMedia(this.config, 'shows', { pagination, filters });
   }
 
-  recommended({ pagination, filters }: { pagination: Pagination; filters?: Filters });
+  /**
+   * Returns the most recommended shows in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * @param param0
+   * @returns
+   */
+  recommended({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<RecommendedShow[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getRecommendedMedia<RecommendedShow[]>(this.config, 'shows', { pagination, filters, period });
+  }
 }
 
 /**
@@ -150,6 +170,25 @@ export class Movies implements ApiNamespace {
 
     return getPopularMedia(this.config, 'movies', { pagination, filters });
   }
+
+  /**
+   * Returns the most recommended movies in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * @param param0
+   * @returns
+   */
+  recommended({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<RecommendedMovie[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getRecommendedMedia<RecommendedMovie[]>(this.config, 'movies', { pagination, filters, period });
+  }
 }
 
 /**
@@ -196,6 +235,25 @@ export async function getPopularMedia(
 ) {
   const url = `${apiUrl}/${type}/popular`;
   const response = await fetch<TraktApiContent[]>(client, url, { pagination, filters });
+
+  return response;
+}
+
+export async function getRecommendedMedia<T>(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  {
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  },
+) {
+  const url = `${apiUrl}/${type}/recommended`;
+  const response = await fetch<T>(client, url, { pagination, filters, period });
 
   return response;
 }
