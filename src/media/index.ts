@@ -2,8 +2,8 @@ import { ApiConfig, ApiNamespace } from '../client';
 import {
   MoviePeople,
   MovieSummary_Full,
-  Played_WatchedMovie,
-  Played_WatchedShow,
+  Played_Watched_CollectedMovie,
+  Played_Watched_CollectedShow,
   RecommendedMovie,
   RecommendedPeriod,
   RecommendedShow,
@@ -117,10 +117,10 @@ export class Shows implements ApiNamespace {
     pagination: Pagination;
     filters?: Filters;
     period?: RecommendedPeriod;
-  }): Promise<ApiResponse<Played_WatchedShow[]>> {
+  }): Promise<ApiResponse<Played_Watched_CollectedShow[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
-    return getPlayedMedia<Played_WatchedShow[]>(this.config, 'shows', { pagination, filters, period });
+    return getPlayedMedia<Played_Watched_CollectedShow[]>(this.config, 'shows', { pagination, filters, period });
   }
 
   /**
@@ -136,10 +136,29 @@ export class Shows implements ApiNamespace {
     pagination: Pagination;
     filters?: Filters;
     period?: RecommendedPeriod;
-  }): Promise<ApiResponse<Played_WatchedShow[]>> {
+  }): Promise<ApiResponse<Played_Watched_CollectedShow[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
-    return getWatchedMedia<Played_WatchedShow[]>(this.config, 'shows', { pagination, filters, period });
+    return getWatchedMedia<Played_Watched_CollectedShow[]>(this.config, 'shows', { pagination, filters, period });
+  }
+
+  /**
+   * Returns the most watched (unique users) shows in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * @param param0
+   * @returns
+   */
+  collected({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<Played_Watched_CollectedShow[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getCollectedMedia<Played_Watched_CollectedShow[]>(this.config, 'shows', { pagination, filters, period });
   }
 }
 
@@ -243,14 +262,14 @@ export class Movies implements ApiNamespace {
     pagination: Pagination;
     filters?: Filters;
     period?: RecommendedPeriod;
-  }): Promise<ApiResponse<Played_WatchedMovie[]>> {
+  }): Promise<ApiResponse<Played_Watched_CollectedMovie[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
-    return getPlayedMedia<Played_WatchedMovie[]>(this.config, 'movies', { pagination, filters, period });
+    return getPlayedMedia<Played_Watched_CollectedMovie[]>(this.config, 'movies', { pagination, filters, period });
   }
 
   /**
-   * Returns the most watched (unique users) movies in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * Returns the most collected (unique users) shows in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
    * @param param0
    * @returns
    */
@@ -262,10 +281,29 @@ export class Movies implements ApiNamespace {
     pagination: Pagination;
     filters?: Filters;
     period?: RecommendedPeriod;
-  }): Promise<ApiResponse<Played_WatchedMovie[]>> {
+  }): Promise<ApiResponse<Played_Watched_CollectedMovie[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
-    return getWatchedMedia<Played_WatchedMovie[]>(this.config, 'movies', { pagination, filters, period });
+    return getWatchedMedia<Played_Watched_CollectedMovie[]>(this.config, 'movies', { pagination, filters, period });
+  }
+
+  /**
+   * Returns the most collected (unique users) movies in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * @param param0
+   * @returns
+   */
+  collected({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<Played_Watched_CollectedMovie[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getCollectedMedia<Played_Watched_CollectedMovie[]>(this.config, 'movies', { pagination, filters, period });
   }
 }
 
@@ -390,6 +428,32 @@ export async function getWatchedMedia<T>(
   },
 ) {
   const url = `${apiUrl}/${type}/watched`;
+  const response = await fetch<T>(client, url, { pagination, filters, period });
+
+  return response;
+}
+
+/**
+ * Gets most collected (unique users) media for shows and movies
+ * @param ApiConfig
+ * @param type
+ * @param options
+ * @returns
+ */
+export async function getCollectedMedia<T>(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  {
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  },
+) {
+  const url = `${apiUrl}/${type}/collected`;
   const response = await fetch<T>(client, url, { pagination, filters, period });
 
   return response;
