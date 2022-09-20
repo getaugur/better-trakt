@@ -1,4 +1,6 @@
 import { AxiosError, AxiosInstance, AxiosRequestHeaders, AxiosResponseHeaders } from 'axios';
+import { RecommendedPeriod } from '../trakt';
+import { buildUrl } from './buildUrl';
 import { TraktHttpError } from './error';
 
 export interface Filters {
@@ -105,6 +107,7 @@ export interface FetchOptions {
   accessToken?: string;
   pagination?: Pagination;
   filters?: Filters;
+  period?: RecommendedPeriod;
 }
 
 /**
@@ -122,7 +125,7 @@ export async function fetch<T>(client: AxiosInstance, url: string, options?: Fet
     headers['Authorization'] = `Bearer ${options.accessToken}`;
 
   try {
-    const response = await client.get<T>(url, {
+    const response = await client.get<T>(buildUrl(url, options), {
       headers,
       // parseJson: (text: string) => Bourne.parse(text),
     });

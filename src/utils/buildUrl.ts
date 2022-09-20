@@ -13,14 +13,20 @@ import { FetchOptions } from './fetch';
  * @returns "built" uri
  * @internal
  */
-export function buildUrl(baseUrl: string, options: FetchOptions) {
-  const queryOptions: string[] = [];
+export function buildUrl(baseUrl: string, options?: FetchOptions) {
+  // if not options
+  if (options === undefined) return baseUrl;
 
+  const queryOptions: string[] = [];
+  let newUrl = baseUrl;
+
+  // all pagination options
   if (options.pagination !== undefined) {
     queryOptions.push(`page=${options.pagination.page}`);
     queryOptions.push(`limit=${options.pagination.limit}`);
   }
 
+  // all the different filters that can be added
   if (options.filters !== undefined) {
     if (options.filters.query !== undefined) queryOptions.push(`query=${options.filters.query}`);
 
@@ -49,8 +55,14 @@ export function buildUrl(baseUrl: string, options: FetchOptions) {
       });
   }
 
+  // some methods allow a period to be specified
+  if (options.period !== undefined) {
+    newUrl += `/${options.period}`;
+  }
+
+  // if there are any query params to add
   if (queryOptions.length > 0) {
-    let newUrl = baseUrl + '?';
+    newUrl += '?';
 
     queryOptions.forEach((value, i) => {
       if (i === 0) {
@@ -59,7 +71,7 @@ export function buildUrl(baseUrl: string, options: FetchOptions) {
         newUrl += `&${value}`;
       }
     });
-
-    return newUrl;
   }
+
+  return newUrl;
 }
