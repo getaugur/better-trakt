@@ -2,6 +2,8 @@ import { ApiConfig, ApiNamespace } from '../client';
 import {
   MoviePeople,
   MovieSummary_Full,
+  PlayedMovie,
+  PlayedShow,
   RecommendedMovie,
   RecommendedPeriod,
   RecommendedShow,
@@ -101,6 +103,25 @@ export class Shows implements ApiNamespace {
 
     return getRecommendedMedia<RecommendedShow[]>(this.config, 'shows', { pagination, filters, period });
   }
+
+  /**
+   * Returns the most played (a single user can watch multiple episodes multiple times) shows in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * @param param0
+   * @returns
+   */
+  played({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<PlayedShow[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getPlayedMedia<PlayedShow[]>(this.config, 'shows', { pagination, filters, period });
+  }
 }
 
 /**
@@ -189,6 +210,25 @@ export class Movies implements ApiNamespace {
 
     return getRecommendedMedia<RecommendedMovie[]>(this.config, 'movies', { pagination, filters, period });
   }
+
+  /**
+   * Returns the most played (a single user can watch multiple times) movies in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * @param param0
+   * @returns
+   */
+  played({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<PlayedMovie[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getPlayedMedia<PlayedMovie[]>(this.config, 'movies', { pagination, filters, period });
+  }
 }
 
 /**
@@ -239,6 +279,13 @@ export async function getPopularMedia(
   return response;
 }
 
+/**
+ * Gets recommended media for shows and movies
+ * @param ApiConfig
+ * @param type
+ * @param options
+ * @returns
+ */
 export async function getRecommendedMedia<T>(
   { client, apiUrl }: ApiConfig,
   type: 'movies' | 'shows',
@@ -253,6 +300,32 @@ export async function getRecommendedMedia<T>(
   },
 ) {
   const url = `${apiUrl}/${type}/recommended`;
+  const response = await fetch<T>(client, url, { pagination, filters, period });
+
+  return response;
+}
+
+/**
+ * Gets most played media for shows and movies
+ * @param ApiConfig
+ * @param type
+ * @param options
+ * @returns
+ */
+export async function getPlayedMedia<T>(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  {
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  },
+) {
+  const url = `${apiUrl}/${type}/played`;
   const response = await fetch<T>(client, url, { pagination, filters, period });
 
   return response;
