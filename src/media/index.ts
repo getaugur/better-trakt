@@ -2,8 +2,8 @@ import { ApiConfig, ApiNamespace } from '../client';
 import {
   MoviePeople,
   MovieSummary_Full,
-  PlayedMovie,
-  PlayedShow,
+  Played_WatchedMovie,
+  Played_WatchedShow,
   RecommendedMovie,
   RecommendedPeriod,
   RecommendedShow,
@@ -117,10 +117,29 @@ export class Shows implements ApiNamespace {
     pagination: Pagination;
     filters?: Filters;
     period?: RecommendedPeriod;
-  }): Promise<ApiResponse<PlayedShow[]>> {
+  }): Promise<ApiResponse<Played_WatchedShow[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
-    return getPlayedMedia<PlayedShow[]>(this.config, 'shows', { pagination, filters, period });
+    return getPlayedMedia<Played_WatchedShow[]>(this.config, 'shows', { pagination, filters, period });
+  }
+
+  /**
+   * Returns the most watched (unique users) shows in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * @param param0
+   * @returns
+   */
+  watched({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<Played_WatchedShow[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getWatchedMedia<Played_WatchedShow[]>(this.config, 'shows', { pagination, filters, period });
   }
 }
 
@@ -224,10 +243,29 @@ export class Movies implements ApiNamespace {
     pagination: Pagination;
     filters?: Filters;
     period?: RecommendedPeriod;
-  }): Promise<ApiResponse<PlayedMovie[]>> {
+  }): Promise<ApiResponse<Played_WatchedMovie[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
-    return getPlayedMedia<PlayedMovie[]>(this.config, 'movies', { pagination, filters, period });
+    return getPlayedMedia<Played_WatchedMovie[]>(this.config, 'movies', { pagination, filters, period });
+  }
+
+  /**
+   * Returns the most watched (unique users) movies in the specified time period, defaulting to weekly. All stats are relative to the specific time period.
+   * @param param0
+   * @returns
+   */
+  watched({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<Played_WatchedMovie[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getWatchedMedia<Played_WatchedMovie[]>(this.config, 'movies', { pagination, filters, period });
   }
 }
 
@@ -326,6 +364,32 @@ export async function getPlayedMedia<T>(
   },
 ) {
   const url = `${apiUrl}/${type}/played`;
+  const response = await fetch<T>(client, url, { pagination, filters, period });
+
+  return response;
+}
+
+/**
+ * Gets most watched (unique users) media for shows and movies
+ * @param ApiConfig
+ * @param type
+ * @param options
+ * @returns
+ */
+export async function getWatchedMedia<T>(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  {
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  },
+) {
+  const url = `${apiUrl}/${type}/watched`;
   const response = await fetch<T>(client, url, { pagination, filters, period });
 
   return response;

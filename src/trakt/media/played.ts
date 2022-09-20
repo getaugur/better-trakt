@@ -1,16 +1,16 @@
 import { TraktApiContent } from '../traktTypes';
 
-export interface PlayedBase {
+export interface Played_WatchedBase {
   watcher_count: number;
   play_count: number;
   collected_count: number;
 }
 
-export interface PlayedMovie extends PlayedBase {
+export interface Played_WatchedMovie extends Played_WatchedBase {
   movie: TraktApiContent;
 }
 
-export interface PlayedShow extends PlayedBase {
+export interface Played_WatchedShow extends Played_WatchedBase {
   collector_count: number;
   show: TraktApiContent;
 }
