@@ -25,7 +25,7 @@ export class Users implements ApiNamespace {
   watchedMovies({ userId, accessToken }: { userId: string; accessToken?: string }) {
     checkRequiredArg(userId, 'userId', 'string');
 
-    return getWatchedMedia<WatchedMovie[]>(this.config, userId, 'movies', accessToken);
+    return getUserWatchedMedia<WatchedMovie[]>(this.config, userId, 'movies', accessToken);
   }
 
   /**
@@ -38,11 +38,11 @@ export class Users implements ApiNamespace {
   watchedShows({ userId, accessToken }: { userId: string; accessToken?: string }) {
     checkRequiredArg(userId, 'userId', 'string');
 
-    return getWatchedMedia<WatchedShow[]>(this.config, userId, 'shows', accessToken);
+    return getUserWatchedMedia<WatchedShow[]>(this.config, userId, 'shows', accessToken);
   }
 }
 
-export async function getWatchedMedia<T>(
+export async function getUserWatchedMedia<T>(
   { client, apiUrl }: ApiConfig,
   userId: string,
   type: 'movies' | 'shows',
