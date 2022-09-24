@@ -6,3 +6,4 @@ export * from './played';
 export * from './trending';
 export * from './anticipated';
 export * from './boxOffice';
+export * from './updates';

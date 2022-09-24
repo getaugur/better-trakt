@@ -1,5 +1,5 @@
 import { AxiosError, AxiosInstance, AxiosRequestHeaders, AxiosResponseHeaders } from 'axios';
-import { RecommendedPeriod } from '../trakt';
+import { RecommendedPeriod, UpdatedStartDate } from '../trakt';
 import { buildUrl } from './buildUrl';
 import { TraktHttpError } from './error';
 
@@ -108,6 +108,7 @@ export interface FetchOptions {
   pagination?: Pagination;
   filters?: Filters;
   period?: RecommendedPeriod;
+  startDate?: UpdatedStartDate;
 }
 
 /**

@@ -55,9 +55,12 @@ export function buildUrl(baseUrl: string, options?: FetchOptions) {
       });
   }
 
-  // some methods allow a period to be specified
   if (options.period !== undefined) {
+    // some methods allow a period to be specified
     newUrl += `/${options.period}`;
+  } else if (options.startDate !== undefined) {
+    // others allow for a start date
+    newUrl += `/${options.startDate}`;
   }
 
   // if there are any query params to add
