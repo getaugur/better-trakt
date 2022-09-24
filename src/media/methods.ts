@@ -184,7 +184,7 @@ export async function getWatchedMedia<T>(
  * @returns
  */
 export async function getBoxOfficeMedia<T>({ client, apiUrl }: ApiConfig, type: 'movies' | 'shows') {
-  const url = `${apiUrl}/${type}/watched`;
+  const url = `${apiUrl}/${type}/boxoffice`;
   const response = await fetch<T>(client, url);
 
   return response;
@@ -224,7 +224,7 @@ export async function getCollectedMedia<T>(
  * @internal
  */
 export async function getMediaPeople<T>({ client, apiUrl }: ApiConfig, movieId: string) {
-  const url = `${apiUrl}/${movieId}?extended=full`;
+  const url = `${apiUrl}/${movieId}/people`;
   const response = await fetch<T>(client, url);
 
   return response;
