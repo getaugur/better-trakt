@@ -116,15 +116,13 @@ export async function getAnticipatedMedia<T>(
   {
     pagination,
     filters,
-    period,
   }: {
     pagination: Pagination;
     filters?: Filters;
-    period?: RecommendedPeriod;
   },
 ) {
   const url = `${apiUrl}/${type}/anticipated`;
-  const response = await fetch<T>(client, url, { pagination, filters, period });
+  const response = await fetch<T>(client, url, { pagination, filters });
 
   return response;
 }

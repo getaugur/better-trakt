@@ -176,15 +176,13 @@ export class Movies implements ApiNamespace {
   anticipated({
     pagination,
     filters,
-    period,
   }: {
     pagination: Pagination;
     filters?: Filters;
-    period?: RecommendedPeriod;
   }): Promise<ApiResponse<AnticipatedMovie[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
-    return getAnticipatedMedia<AnticipatedMovie[]>(this.config, 'movies', { pagination, filters, period });
+    return getAnticipatedMedia<AnticipatedMovie[]>(this.config, 'movies', { pagination, filters });
   }
 
   /**
