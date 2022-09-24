@@ -104,6 +104,32 @@ export async function getPlayedMedia<T>(
 }
 
 /**
+ * Gets most anticipated media for shows and movies
+ * @param ApiConfig
+ * @param type
+ * @param options
+ * @returns
+ */
+export async function getAnticipatedMedia<T>(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  {
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  },
+) {
+  const url = `${apiUrl}/${type}/anticipated`;
+  const response = await fetch<T>(client, url, { pagination, filters, period });
+
+  return response;
+}
+
+/**
  * Gets most watched (unique users) media for shows and movies
  * @param ApiConfig
  * @param type
