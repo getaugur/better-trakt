@@ -10,6 +10,7 @@ import {
   getCollectedMedia,
   getAnticipatedMedia,
   getBoxOfficeMedia,
+  getUpdatesMedia,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -21,6 +22,8 @@ import {
   Played_Watched_CollectedShow,
   AnticipatedShow,
   BoxOfficeShow,
+  UpdatedStartDate,
+  UpdatesShow,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters } from '../utils';
 
@@ -192,5 +195,31 @@ export class Shows implements ApiNamespace {
    */
   boxOffice(): Promise<ApiResponse<BoxOfficeShow[]>> {
     return getBoxOfficeMedia<BoxOfficeShow[]>(this.config, 'shows');
+  }
+
+  /**
+   * Returns all shows updated since the specified UTC date and time.
+   * We recommended storing the X-Start-Date header you can be efficient using this method moving forward.
+   * By default, 10 results are returned. You can send a limit to get up to 100 results per page.
+   *
+   * **Important!**
+   * The start_date is only accurate to the hour, for caching purposes.
+   * Please drop the minutes and seconds from your timestamp to help optimize our cached data.
+   * For example, use 2021-07-17T12:00:00Z and not 2021-07-17T12:23:34Z.
+   *
+   * Note: The start_date can only be a maximum of 30 days in the past.
+   * @param param0
+   * @returns
+   */
+  updates({
+    pagination,
+    startDate,
+  }: {
+    pagination: Pagination;
+    startDate?: UpdatedStartDate;
+  }): Promise<ApiResponse<UpdatesShow[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getUpdatesMedia<UpdatesShow[]>(this.config, 'shows', { pagination, startDate });
   }
 }
