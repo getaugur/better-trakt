@@ -8,6 +8,7 @@ import {
   getPlayedMedia,
   getWatchedMedia,
   getCollectedMedia,
+  getAnticipatedMedia,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -17,6 +18,7 @@ import {
   RecommendedPeriod,
   RecommendedShow,
   Played_Watched_CollectedShow,
+  AnticipatedShow,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters } from '../utils';
 
@@ -163,5 +165,24 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(pagination, 'pagination', 'object');
 
     return getCollectedMedia<Played_Watched_CollectedShow[]>(this.config, 'shows', { pagination, filters, period });
+  }
+
+  /**
+   * Returns the most anticipated shows based on the number of lists a show appears on.
+   * @param param0
+   * @returns
+   */
+  anticipated({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<AnticipatedShow[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getAnticipatedMedia<AnticipatedShow[]>(this.config, 'movies', { pagination, filters, period });
   }
 }

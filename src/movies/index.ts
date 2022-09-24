@@ -8,6 +8,7 @@ import {
   getPlayedMedia,
   getWatchedMedia,
   getCollectedMedia,
+  getAnticipatedMedia,
 } from '../media';
 import {
   MovieSummary_Full,
@@ -17,6 +18,7 @@ import {
   RecommendedPeriod,
   RecommendedMovie,
   Played_Watched_CollectedMovie,
+  AnticipatedMovie,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters } from '../utils';
 
@@ -162,5 +164,24 @@ export class Movies implements ApiNamespace {
     checkRequiredArg(pagination, 'pagination', 'object');
 
     return getCollectedMedia<Played_Watched_CollectedMovie[]>(this.config, 'movies', { pagination, filters, period });
+  }
+
+  /**
+   * Returns the most anticipated movies based on the number of lists a movie appears on.
+   * @param param0
+   * @returns
+   */
+  anticipated({
+    pagination,
+    filters,
+    period,
+  }: {
+    pagination: Pagination;
+    filters?: Filters;
+    period?: RecommendedPeriod;
+  }): Promise<ApiResponse<AnticipatedMovie[]>> {
+    checkRequiredArg(pagination, 'pagination', 'object');
+
+    return getAnticipatedMedia<AnticipatedMovie[]>(this.config, 'movies', { pagination, filters, period });
   }
 }
