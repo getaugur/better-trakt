@@ -1,5 +1,5 @@
 import { ApiConfig } from '../client';
-import { TraktApiContent, UpdatedStartDate } from '../trakt';
+import { TraktApiContent, UpdatedIDs, UpdatedStartDate } from '../trakt';
 import { RecommendedPeriod } from '../trakt/media/recommended';
 import { Pagination, Filters, fetch } from '../utils';
 
@@ -123,6 +123,30 @@ export async function getUpdatesMedia<T>(
 ) {
   const url = `${apiUrl}/${type}/updates`;
   const response = await fetch<T>(client, url, { pagination, startDate });
+
+  return response;
+}
+
+/**
+ * Gets recently updated ids of media
+ * @param ApiConfig
+ * @param type
+ * @param options
+ * @returns
+ */
+export async function getUpdatedIDsMedia(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  {
+    pagination,
+    startDate,
+  }: {
+    pagination: Pagination;
+    startDate?: UpdatedStartDate;
+  },
+) {
+  const url = `${apiUrl}/${type}/updates/id`;
+  const response = await fetch<UpdatedIDs>(client, url, { pagination, startDate });
 
   return response;
 }
