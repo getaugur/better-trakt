@@ -9,6 +9,7 @@ import {
   getWatchedMedia,
   getCollectedMedia,
   getAnticipatedMedia,
+  getBoxOfficeMedia,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -19,6 +20,7 @@ import {
   RecommendedShow,
   Played_Watched_CollectedShow,
   AnticipatedShow,
+  BoxOfficeShow,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters } from '../utils';
 
@@ -184,5 +186,13 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(pagination, 'pagination', 'object');
 
     return getAnticipatedMedia<AnticipatedShow[]>(this.config, 'movies', { pagination, filters, period });
+  }
+
+  /**
+   * Returns the top 10 grossing shows in the U.S. box office last weekend. Updated every Monday morning.
+   * @returns
+   */
+  boxOffice(): Promise<ApiResponse<BoxOfficeShow[]>> {
+    return getBoxOfficeMedia<BoxOfficeShow[]>(this.config, 'shows');
   }
 }

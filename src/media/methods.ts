@@ -156,6 +156,19 @@ export async function getWatchedMedia<T>(
 }
 
 /**
+ * Gets the media with the biggest box office revenue
+ * @param ApiConfig
+ * @param type
+ * @returns
+ */
+export async function getBoxOfficeMedia<T>({ client, apiUrl }: ApiConfig, type: 'movies' | 'shows') {
+  const url = `${apiUrl}/${type}/watched`;
+  const response = await fetch<T>(client, url);
+
+  return response;
+}
+
+/**
  * Gets most collected (unique users) media for shows and movies
  * @param ApiConfig
  * @param type

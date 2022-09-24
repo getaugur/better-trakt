@@ -5,3 +5,4 @@ export * from './recommended';
 export * from './played';
 export * from './trending';
 export * from './anticipated';
+export * from './boxOffice';
