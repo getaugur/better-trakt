@@ -12,6 +12,7 @@ import {
   getBoxOfficeMedia,
   getUpdatesMedia,
   getUpdatedIDsMedia,
+  getAliasesMedia,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -249,5 +250,16 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(pagination, 'pagination', 'object');
 
     return getUpdatedIDsMedia(this.config, 'shows', { pagination, startDate });
+  }
+
+  /**
+   * Returns all title aliases for a show. Includes country where name is different.
+   * @param param0
+   * @returns
+   */
+  aliases({ showID }: { showID: string }) {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    return getAliasesMedia(this.config, 'shows', { mediaID: showID });
   }
 }

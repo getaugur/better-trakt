@@ -1,5 +1,5 @@
 import { ApiConfig } from '../client';
-import { TraktApiContent, UpdatedIDs, UpdatedStartDate } from '../trakt';
+import { Alias, TraktApiContent, UpdatedIDs, UpdatedStartDate } from '../trakt';
 import { RecommendedPeriod } from '../trakt/media/recommended';
 import { Pagination, Filters, fetch } from '../utils';
 
@@ -147,6 +147,28 @@ export async function getUpdatedIDsMedia(
 ) {
   const url = `${apiUrl}/${type}/updates/id`;
   const response = await fetch<UpdatedIDs>(client, url, { pagination, startDate });
+
+  return response;
+}
+
+/**
+ * Gets all title aliases for media
+ * @param ApiConfig
+ * @param type
+ * @param options
+ * @returns
+ */
+export async function getAliasesMedia(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  {
+    mediaID,
+  }: {
+    mediaID: string;
+  },
+) {
+  const url = `${apiUrl}/${type}/${mediaID}/aliases`;
+  const response = await fetch<Alias[]>(client, url);
 
   return response;
 }

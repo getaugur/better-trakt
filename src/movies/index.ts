@@ -12,6 +12,7 @@ import {
   getBoxOfficeMedia,
   getUpdatesMedia,
   getUpdatedIDsMedia,
+  getAliasesMedia,
 } from '../media';
 import {
   MovieSummary_Full,
@@ -248,5 +249,16 @@ export class Movies implements ApiNamespace {
     checkRequiredArg(pagination, 'pagination', 'object');
 
     return getUpdatedIDsMedia(this.config, 'movies', { pagination, startDate });
+  }
+
+  /**
+   * Returns all title aliases for a movie. Includes country where name is different.
+   * @param param0
+   * @returns
+   */
+  aliases({ movieID }: { movieID: string }) {
+    checkRequiredArg(movieID, 'movieID', 'string');
+
+    return getAliasesMedia(this.config, 'movies', { mediaID: movieID });
   }
 }
