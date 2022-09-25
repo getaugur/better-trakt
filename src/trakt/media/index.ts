@@ -9,3 +9,4 @@ export * from './boxOffice';
 export * from './updates';
 export * from './aliases';
 export * from './releases';
+export * from './certifications';

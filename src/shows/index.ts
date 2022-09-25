@@ -27,8 +27,10 @@ import {
   UpdatedStartDate,
   UpdatesShow,
   UpdatedIDs,
+  Alias,
+  ShowCertification,
 } from '../trakt';
-import { ApiResponse, checkRequiredArg, Pagination, Filters } from '../utils';
+import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
 /**
  * Shows api namespace
@@ -257,9 +259,21 @@ export class Shows implements ApiNamespace {
    * @param param0
    * @returns
    */
-  aliases({ showID }: { showID: string }) {
+  aliases({ showID }: { showID: string }): Promise<ApiResponse<Alias[]>> {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getAliasesMedia(this.config, 'shows', { mediaID: showID });
+  }
+
+  /**
+   * Gets all content certifications for a show, including the country.
+   * @param param0
+   * @returns all content certifications for a show
+   */
+  async certifications({ showID }: { showID: string }) {
+    const url = `${this.config.apiUrl}/shows/${showID}/certifications`;
+    const response = await fetch<ShowCertification[]>(this.config.client, url);
+
+    return response;
   }
 }
