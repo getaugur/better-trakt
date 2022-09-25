@@ -61,6 +61,9 @@ export function buildUrl(baseUrl: string, options?: FetchOptions) {
   } else if (options.startDate !== undefined) {
     // others allow for a start date
     newUrl += `/${options.startDate}`;
+  } else if (options.country !== undefined) {
+    // a select few allow a country
+    newUrl += `/${options.country}`;
   }
 
   // if there are any query params to add

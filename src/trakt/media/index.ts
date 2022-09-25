@@ -8,3 +8,4 @@ export * from './anticipated';
 export * from './boxOffice';
 export * from './updates';
 export * from './aliases';
+export * from './releases';
