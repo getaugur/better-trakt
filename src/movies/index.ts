@@ -27,8 +27,11 @@ import {
   UpdatesMovie,
   UpdatedStartDate,
   UpdatedIDs,
+  Release,
+  ReleasesCountry,
+  Alias,
 } from '../trakt';
-import { ApiResponse, checkRequiredArg, Pagination, Filters } from '../utils';
+import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
 /**
  * Movies api namespace
@@ -256,9 +259,33 @@ export class Movies implements ApiNamespace {
    * @param param0
    * @returns
    */
-  aliases({ movieID }: { movieID: string }) {
+  aliases({ movieID }: { movieID: string }): Promise<ApiResponse<Alias[]>> {
     checkRequiredArg(movieID, 'movieID', 'string');
 
     return getAliasesMedia(this.config, 'movies', { mediaID: movieID });
+  }
+
+  /**
+   * Returns all releases for a movie including country,
+   * certification, release date, release type, and note.
+   * The release type can be set to unknown, premiere,
+   * limited, theatrical, digital, physical, or tv.
+   * The note might have optional info such as the film festival
+   * name for a premiere release or Blu-ray specs for a physical release.
+   * We pull this info from TMDB.
+   * @param param0
+   * @returns All the releases for a movie
+   */
+  async releases({
+    movieID,
+    country,
+  }: {
+    movieID: string;
+    country?: ReleasesCountry;
+  }): Promise<ApiResponse<Release[]>> {
+    const url = `${this.config.apiUrl}/movies/${movieID}/releases`;
+    const response = await fetch<Release[]>(this.config.client, url, { country });
+
+    return response;
   }
 }
