@@ -89,6 +89,13 @@ _More examples in the [examples folder](https://github.com/getaugur/better-trakt
 
 Docs for the latest release can be found at [https://getaugur.github.io/better-trakt/](https://getaugur.github.io/better-trakt/). For other versions simply run `yarn build:docs` in the repo.
 
+## Getting Images
+
+As described in the offical docs, you need to use 3rd party APIs. Listed below are some libraries we recommend using, all of which have typescript support:
+
+- [moviedb-promise](https://github.com/grantholle/moviedb-promise)
+- [omdb](https://github.com/thblt-thlgn/omdb) (has some issues)
+
 ## ⚠️ Alpha Notice
 
 Until `beter-trakt` reaches `1.0`, there may be breaking changes in new minor versions.
