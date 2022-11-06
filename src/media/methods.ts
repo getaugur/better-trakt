@@ -4,6 +4,7 @@ import {
   Comment,
   CommentSortByMedia,
   ListQueryByType,
+  MediaRating,
   TraktApiContent,
   UpdatedIDs,
   UpdatedStartDate,
@@ -344,6 +345,13 @@ export async function getListsWithMedia(
 ) {
   const url = `${apiUrl}/${type}/${mediaId}/lists`;
   const response = await fetch<Comment[]>(client, url, { pagination, sort, type: listType });
+
+  return response;
+}
+
+export async function getMediaRating({ client, apiUrl }: ApiConfig, type: 'movies' | 'shows', mediaId: string) {
+  const url = `${apiUrl}/${type}/${mediaId}/ratings`;
+  const response = await fetch<MediaRating>(client, url);
 
   return response;
 }

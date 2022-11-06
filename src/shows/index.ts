@@ -16,6 +16,7 @@ import {
   getMediaTranslations,
   getMediaComments,
   getListsWithMedia,
+  getMediaRating,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -36,6 +37,7 @@ import {
   CommentSortByMedia,
   Comment,
   ListQueryByType,
+  MediaRating,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -340,5 +342,16 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getListsWithMedia(this.config, 'shows', showID, { pagination, sort, type });
+  }
+
+  /**
+   * Returns rating (between 0 and 10) and distribution for a show.
+   * @param param0
+   * @returns
+   */
+  async ratings({ showID }: { showID: string }): Promise<ApiResponse<MediaRating>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    return getMediaRating(this.config, 'shows', showID);
   }
 }

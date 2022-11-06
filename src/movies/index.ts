@@ -16,6 +16,7 @@ import {
   getMediaTranslations,
   getMediaComments,
   getListsWithMedia,
+  getMediaRating,
 } from '../media';
 import {
   MovieSummary_Full,
@@ -37,6 +38,7 @@ import {
   CommentSortByMedia,
   Comment,
   ListQueryByType,
+  MediaRating,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -352,5 +354,16 @@ export class Movies implements ApiNamespace {
     checkRequiredArg(movieID, 'movieID', 'string');
 
     return getListsWithMedia(this.config, 'movies', movieID, { pagination, sort, type });
+  }
+
+  /**
+   * Returns rating (between 0 and 10) and distribution for a movie.
+   * @param param0
+   * @returns
+   */
+  async ratings({ movieID }: { movieID: string }): Promise<ApiResponse<MediaRating>> {
+    checkRequiredArg(movieID, 'movieID', 'string');
+
+    return getMediaRating(this.config, 'movies', movieID);
   }
 }
