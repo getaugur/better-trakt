@@ -35,8 +35,14 @@ const client = new Trakt({
   clientSecret: 'client secret',
 });
 
-const watchedMovies = client.users.watchedMovies('user id', 'access token');
+// get every movie a user has watched
+const watchedMovies = await client.users.watchedMovies({ userId: '1234', accessToken: 'abcd123' });
+
+// get the summary for the show with the trakt id of "1"
+const show1 = await client.shows.summary('1');
 ```
+
+_More examples in the [examples folder](https://github.com/getaugur/better-trakt/tree/main/example)._
 
 ## Compatibility
 
@@ -82,6 +88,13 @@ const watchedMovies = client.users.watchedMovies('user id', 'access token');
 ## Docs
 
 Docs for the latest release can be found at [https://getaugur.github.io/better-trakt/](https://getaugur.github.io/better-trakt/). For other versions simply run `yarn build:docs` in the repo.
+
+## Getting Images
+
+As described in the offical docs, you need to use 3rd party APIs. Listed below are some libraries we recommend using, all of which have typescript support:
+
+- [moviedb-promise](https://github.com/grantholle/moviedb-promise)
+- [omdb](https://github.com/thblt-thlgn/omdb) (has some issues)
 
 ## ⚠️ Alpha Notice
 

@@ -1,6 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
 import { Network } from '../trakt';
-import { fetch } from '../utils';
+import { ApiResponse, fetch } from '../utils';
 
 /**
  * Networks api namespace
@@ -16,10 +16,10 @@ export class Networks implements ApiNamespace {
   }
 
   /**
-   * Gets list of all tv networks
+   * Get a list of all TV networks, including the name.
    * @returns
    */
-  async list() {
+  async list(): Promise<ApiResponse<Network[]>> {
     const url = `${this.config.apiUrl}`;
     const response = await fetch<Network[]>(this.config.client, url);
 

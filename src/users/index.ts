@@ -1,6 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
 import { WatchedMovie, WatchedShow } from '../trakt';
-import { fetch, checkRequiredArg } from '../utils';
+import { fetch, checkRequiredArg, ApiResponse } from '../utils';
 
 /**
  * Users api namespace
@@ -16,26 +16,32 @@ export class Users implements ApiNamespace {
   }
 
   /**
-   * Gets a users movie watch history
+   * Returns all movies a user has watched sorted by most plays.
    * @param client axios
    * @param userId trakt user id
    * @param accessToken oauth access token for private accounts
    * @returns
    */
-  watchedMovies({ userId, accessToken }: { userId: string; accessToken?: string }) {
+  watchedMovies({
+    userId,
+    accessToken,
+  }: {
+    userId: string;
+    accessToken?: string;
+  }): Promise<ApiResponse<WatchedMovie[]>> {
     checkRequiredArg(userId, 'userId', 'string');
 
     return getUserWatchedMedia<WatchedMovie[]>(this.config, userId, 'movies', accessToken);
   }
 
   /**
-   * Gets a users show watch history
+   * Returns all shows a user has watched sorted by most plays.
    * @param client axios
    * @param userId trakt user id
    * @param accessToken oauth access token for private accounts
    * @returns
    */
-  watchedShows({ userId, accessToken }: { userId: string; accessToken?: string }) {
+  watchedShows({ userId, accessToken }: { userId: string; accessToken?: string }): Promise<ApiResponse<WatchedShow[]>> {
     checkRequiredArg(userId, 'userId', 'string');
 
     return getUserWatchedMedia<WatchedShow[]>(this.config, userId, 'shows', accessToken);

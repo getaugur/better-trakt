@@ -1,6 +1,6 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { Comment, CommentSortByBase, List, ListItemType, ListLike, PopularTrendingList } from '../trakt';
-import { fetch, Pagination } from '../utils';
+import { Comment, CommentSortByBase, List, ListItem, ListItemType, ListLike, PopularTrendingList } from '../trakt';
+import { ApiResponse, fetch, Pagination } from '../utils';
 import { checkRequiredArg } from '../utils/requiredArg';
 
 /**
@@ -21,7 +21,7 @@ export class Lists implements ApiNamespace {
    * @param pagination
    * @returns lists
    */
-  async trending({ pagination }: { pagination: Pagination }) {
+  async trending({ pagination }: { pagination: Pagination }): Promise<ApiResponse<PopularTrendingList[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
     const url = `${this.config.apiUrl}/trending`;
@@ -35,7 +35,7 @@ export class Lists implements ApiNamespace {
    * @param pagination
    * @returns lists
    */
-  async popular({ pagination }: { pagination: Pagination }) {
+  async popular({ pagination }: { pagination: Pagination }): Promise<ApiResponse<PopularTrendingList[]>> {
     checkRequiredArg(pagination, 'pagination', 'object');
 
     const url = `${this.config.apiUrl}/popular`;
@@ -49,7 +49,7 @@ export class Lists implements ApiNamespace {
    * @param id list id
    * @returns list
    */
-  async getList({ id }: { id: string }) {
+  async getList({ id }: { id: string }): Promise<ApiResponse<List>> {
     checkRequiredArg(id, 'id', 'string');
 
     const url = `${this.config.apiUrl}/${id}`;
@@ -64,7 +64,7 @@ export class Lists implements ApiNamespace {
    * @param pagination
    * @returns
    */
-  async getLikes({ id, pagination }: { id: string; pagination: Pagination }) {
+  async getLikes({ id, pagination }: { id: string; pagination: Pagination }): Promise<ApiResponse<ListLike[]>> {
     checkRequiredArg(id, 'id', 'string');
     checkRequiredArg(pagination, 'pagination', 'object');
 
@@ -81,14 +81,22 @@ export class Lists implements ApiNamespace {
    * @param pagination
    * @returns
    */
-  async getItems({ id, pagination, type }: { id: string; pagination?: Pagination; type?: ListItemType }) {
+  async getItems({
+    id,
+    pagination,
+    type,
+  }: {
+    id: string;
+    pagination?: Pagination;
+    type?: ListItemType;
+  }): Promise<ApiResponse<ListItem[]>> {
     checkRequiredArg(id, 'id', 'string');
 
     let url = `${this.config.apiUrl}/${id}/items/`;
 
     if (type !== undefined) url += `${type}`;
 
-    const response = await fetch<ListLike[]>(this.config.client, url, { pagination });
+    const response = await fetch<ListItem[]>(this.config.client, url, { pagination });
 
     return response;
   }
@@ -100,7 +108,15 @@ export class Lists implements ApiNamespace {
    * @param pagination
    * @returns
    */
-  async getComments({ id, pagination, sort }: { id: string; pagination: Pagination; sort?: CommentSortByBase }) {
+  async getComments({
+    id,
+    pagination,
+    sort,
+  }: {
+    id: string;
+    pagination: Pagination;
+    sort?: CommentSortByBase;
+  }): Promise<ApiResponse<Comment[]>> {
     checkRequiredArg(id, 'id', 'string');
 
     const url = `${this.config.apiUrl}/${id}/comments`;
