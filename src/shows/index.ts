@@ -14,6 +14,7 @@ import {
   getUpdatedIDsMedia,
   getAliasesMedia,
   getMediaTranslations,
+  getMediaComments,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -31,6 +32,8 @@ import {
   Alias,
   ShowCertification,
   ShowTranslation,
+  CommentSortByMedia,
+  Comment,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -294,5 +297,25 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getMediaTranslations<ShowTranslation[]>(this.config, 'shows', showID, language);
+  }
+
+  /**
+   * Returns all top level comments for a movie. By default, the newest comments are returned first.
+   * Other sorting options include oldest, most likes, most replies, highest rated, lowest rated, and most plays.
+   * @param param0
+   * @returns
+   */
+  async comments({
+    showID,
+    pagination,
+    sort,
+  }: {
+    showID: string;
+    pagination: Pagination;
+    sort?: CommentSortByMedia;
+  }): Promise<ApiResponse<Comment[]>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    return getMediaComments(this.config, 'shows', showID, { pagination, sort });
   }
 }

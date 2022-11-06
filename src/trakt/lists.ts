@@ -72,23 +72,3 @@ export interface ListPerson {
   name: string;
   ids: TraktApiIds;
 }
-
-export type ListCommentsSortBy = 'newest' | 'oldest' | 'likes' | 'replies';
-
-export interface ListComment {
-  id: number;
-  parent_id: number;
-  created_at: string;
-  updated_at: string;
-  comment: string;
-  spoiler: boolean;
-  review: boolean;
-  replies: number;
-  likes: number;
-  user_stats: {
-    rating: null | number;
-    play_count: number;
-    completed_count: number;
-  };
-  user: UserProfile;
-}

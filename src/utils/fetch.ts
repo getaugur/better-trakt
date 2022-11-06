@@ -1,5 +1,5 @@
 import { AxiosError, AxiosInstance, AxiosRequestHeaders, AxiosResponseHeaders } from 'axios';
-import { RecommendedPeriod, ReleasesCountry, UpdatedStartDate } from '../trakt';
+import { CommentSortByMedia, RecommendedPeriod, ReleasesCountry, UpdatedStartDate } from '../trakt';
 import { buildUrl } from './buildUrl';
 import { TraktHttpError } from './error';
 
@@ -104,13 +104,40 @@ export interface ApiResponse<T> {
 }
 
 export interface FetchOptions {
+  /**
+   * Token to access trakt api
+   */
   accessToken?: string;
+  /**
+   * Pagination settings
+   */
   pagination?: Pagination;
+  /**
+   * filter options
+   */
   filters?: Filters;
+  /**
+   * Period to pull from
+   */
   period?: RecommendedPeriod;
+  /**
+   * Start date
+   */
   startDate?: UpdatedStartDate;
+  /**
+   * Specify country to look for
+   */
   country?: ReleasesCountry;
+  /**
+   * Specify a language
+   */
   language?: string;
+  /**
+   * Sorting options
+   *
+   * (This is just the most inclusive type, not always this permissive.)
+   */
+  sort?: CommentSortByMedia;
 }
 
 /**

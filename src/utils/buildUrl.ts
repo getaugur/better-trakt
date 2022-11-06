@@ -66,8 +66,11 @@ export function buildUrl(baseUrl: string, options?: FetchOptions) {
     // a select few allow a country
     newUrl += `/${options.country}`;
   } else if (options.language !== undefined) {
-    // a select few allow a country
+    // a select few allow a language
     newUrl += `/${options.language}`;
+  } else if (options.sort !== undefined) {
+    // a select few allow sort
+    newUrl += `/${options.sort}`;
   }
 
   // if there are any query params to add

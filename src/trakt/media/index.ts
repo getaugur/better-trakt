@@ -11,3 +11,4 @@ export * from './aliases';
 export * from './releases';
 export * from './certifications';
 export * from './translations';
+export * from './comments';
