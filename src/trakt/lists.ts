@@ -1,3 +1,4 @@
+import { Episode } from './episodes';
 import { TraktApiIds, TraktApiContent } from './traktTypes';
 import { UserProfile } from './users';
 
@@ -62,15 +63,8 @@ export interface ListItem {
   movie?: TraktApiContent;
   show?: TraktApiContent;
   season?: ListSeason;
-  episode?: ListEpisode;
+  episode?: Episode;
   person?: ListPerson;
-}
-
-export interface ListEpisode {
-  season: number;
-  number: number;
-  title: string;
-  ids: TraktApiIds;
 }
 
 export interface ListSeason {

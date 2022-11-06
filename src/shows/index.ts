@@ -45,6 +45,7 @@ import {
   ShowStats,
   UserProfile,
 } from '../trakt';
+import { Episode } from '../trakt/episodes';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
 /**
@@ -398,5 +399,33 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getWatchingMedia(this.config, 'shows', showID);
+  }
+
+  /**
+   * Returns the next scheduled to air episode. If no episode is found, a 204 HTTP status code will be returned.
+   * @param param0
+   * @returns
+   */
+  async nextEpisode({ showID }: { showID: string }): Promise<ApiResponse<Episode>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    const url = `${this.config.apiUrl}/shows/${showID}/next_episode`;
+    const response = await fetch<Episode>(this.config.client, url);
+
+    return response;
+  }
+
+  /**
+   * Returns the most recently aired episode. If no episode is found, a 204 HTTP status code will be returned.
+   * @param param0
+   * @returns
+   */
+  async lastEpisode({ showID }: { showID: string }): Promise<ApiResponse<Episode>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    const url = `${this.config.apiUrl}/shows/${showID}/last_episode`;
+    const response = await fetch<Episode>(this.config.client, url);
+
+    return response;
   }
 }
