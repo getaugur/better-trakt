@@ -13,6 +13,7 @@ import {
   getUpdatesMedia,
   getUpdatedIDsMedia,
   getAliasesMedia,
+  getMediaTranslations,
 } from '../media';
 import {
   MovieSummary_Full,
@@ -30,6 +31,7 @@ import {
   Release,
   ReleasesCountry,
   Alias,
+  MovieTranslation,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -287,5 +289,22 @@ export class Movies implements ApiNamespace {
     const response = await fetch<Release[]>(this.config.client, url, { country });
 
     return response;
+  }
+
+  /**
+   * Returns all translations for a movie, including language and translated values for title, tagline and overview.
+   * @param param0
+   * @returns
+   */
+  async translations({
+    movieID,
+    language,
+  }: {
+    movieID: string;
+    language?: string;
+  }): Promise<ApiResponse<MovieTranslation[]>> {
+    checkRequiredArg(movieID, 'movieID', 'string');
+
+    return getMediaTranslations<MovieTranslation[]>(this.config, 'movies', movieID, language);
   }
 }

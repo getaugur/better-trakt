@@ -55,6 +55,7 @@ export function buildUrl(baseUrl: string, options?: FetchOptions) {
       });
   }
 
+  // all the optional parameters
   if (options.period !== undefined) {
     // some methods allow a period to be specified
     newUrl += `/${options.period}`;
@@ -64,6 +65,9 @@ export function buildUrl(baseUrl: string, options?: FetchOptions) {
   } else if (options.country !== undefined) {
     // a select few allow a country
     newUrl += `/${options.country}`;
+  } else if (options.language !== undefined) {
+    // a select few allow a country
+    newUrl += `/${options.language}`;
   }
 
   // if there are any query params to add

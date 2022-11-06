@@ -13,6 +13,7 @@ import {
   getUpdatesMedia,
   getUpdatedIDsMedia,
   getAliasesMedia,
+  getMediaTranslations,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -29,6 +30,7 @@ import {
   UpdatedIDs,
   Alias,
   ShowCertification,
+  ShowTranslation,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -275,5 +277,22 @@ export class Shows implements ApiNamespace {
     const response = await fetch<ShowCertification[]>(this.config.client, url);
 
     return response;
+  }
+
+  /**
+   * Returns all translations for a show, including language and translated values for title and overview.
+   * @param param0
+   * @returns
+   */
+  async translations({
+    showID,
+    language,
+  }: {
+    showID: string;
+    language?: string;
+  }): Promise<ApiResponse<ShowTranslation[]>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    return getMediaTranslations<ShowTranslation[]>(this.config, 'shows', showID, language);
   }
 }

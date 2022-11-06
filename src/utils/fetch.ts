@@ -110,6 +110,7 @@ export interface FetchOptions {
   period?: RecommendedPeriod;
   startDate?: UpdatedStartDate;
   country?: ReleasesCountry;
+  language?: string;
 }
 
 /**

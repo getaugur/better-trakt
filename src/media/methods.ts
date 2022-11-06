@@ -289,3 +289,15 @@ export async function getMediaSummary_Full<T>({ client, apiUrl }: ApiConfig, sho
 
   return response;
 }
+
+export async function getMediaTranslations<T>(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  mediaId: string,
+  language?: string,
+) {
+  const url = `${apiUrl}/${type}/${mediaId}/translations`;
+  const response = await fetch<T>(client, url, { language });
+
+  return response;
+}
