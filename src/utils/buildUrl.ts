@@ -68,6 +68,10 @@ export function buildUrl(baseUrl: string, options?: FetchOptions) {
   } else if (options.language !== undefined) {
     // a select few allow a language
     newUrl += `/${options.language}`;
+  } else if (options.type !== undefined) {
+    // a select few allow type
+    // MUST come before sort
+    newUrl += `/${options.type}`;
   } else if (options.sort !== undefined) {
     // a select few allow sort
     newUrl += `/${options.sort}`;

@@ -1,5 +1,5 @@
 import { AxiosError, AxiosInstance, AxiosRequestHeaders, AxiosResponseHeaders } from 'axios';
-import { CommentSortByMedia, RecommendedPeriod, ReleasesCountry, UpdatedStartDate } from '../trakt';
+import { CommentSortByMedia, ListQueryByType, RecommendedPeriod, ReleasesCountry, UpdatedStartDate } from '../trakt';
 import { buildUrl } from './buildUrl';
 import { TraktHttpError } from './error';
 
@@ -138,6 +138,11 @@ export interface FetchOptions {
    * (This is just the most inclusive type, not always this permissive.)
    */
   sort?: CommentSortByMedia;
+
+  /**
+   * Types of lists one can query by
+   */
+  type?: ListQueryByType;
 }
 
 /**

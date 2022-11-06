@@ -11,13 +11,23 @@ export interface PopularTrendingList {
 }
 
 /**
+ * Type of list
+ */
+export type ListType = 'personal' | 'official' | 'watchlists' | 'recommendations';
+
+/**
+ * All the types of a list you can search for
+ */
+export type ListQueryByType = ListType | 'all';
+
+/**
  * A list
  */
 export interface List {
   name: string;
   description: string;
   privacy: string;
-  type: string;
+  type: ListType;
   display_numbers: boolean;
   allow_comments: boolean;
   sort_by: string;

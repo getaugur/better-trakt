@@ -15,6 +15,7 @@ import {
   getAliasesMedia,
   getMediaTranslations,
   getMediaComments,
+  getListsWithMedia,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -34,6 +35,7 @@ import {
   ShowTranslation,
   CommentSortByMedia,
   Comment,
+  ListQueryByType,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -317,5 +319,26 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getMediaComments(this.config, 'shows', showID, { pagination, sort });
+  }
+
+  /**
+   * Returns all lists that contain this show. By default, personal lists are returned sorted by the most popular.
+   * @param param0
+   * @returns
+   */
+  async lists({
+    showID,
+    pagination,
+    sort,
+    type,
+  }: {
+    showID: string;
+    pagination: Pagination;
+    sort?: CommentSortByMedia;
+    type?: ListQueryByType;
+  }): Promise<ApiResponse<Comment[]>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    return getListsWithMedia(this.config, 'shows', showID, { pagination, sort, type });
   }
 }

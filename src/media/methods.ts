@@ -1,5 +1,13 @@
 import { ApiConfig } from '../client';
-import { Alias, Comment, CommentSortByMedia, TraktApiContent, UpdatedIDs, UpdatedStartDate } from '../trakt';
+import {
+  Alias,
+  Comment,
+  CommentSortByMedia,
+  ListQueryByType,
+  TraktApiContent,
+  UpdatedIDs,
+  UpdatedStartDate,
+} from '../trakt';
 import { RecommendedPeriod } from '../trakt/media/recommended';
 import { Pagination, Filters, fetch } from '../utils';
 
@@ -316,6 +324,26 @@ export async function getMediaComments(
 ) {
   const url = `${apiUrl}/${type}/${mediaId}/translations`;
   const response = await fetch<Comment[]>(client, url, { pagination, sort });
+
+  return response;
+}
+
+export async function getListsWithMedia(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  mediaId: string,
+  {
+    pagination,
+    type: listType,
+    sort,
+  }: {
+    pagination: Pagination;
+    type?: ListQueryByType;
+    sort?: CommentSortByMedia;
+  },
+) {
+  const url = `${apiUrl}/${type}/${mediaId}/lists`;
+  const response = await fetch<Comment[]>(client, url, { pagination, sort, type: listType });
 
   return response;
 }

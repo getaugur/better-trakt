@@ -15,6 +15,7 @@ import {
   getAliasesMedia,
   getMediaTranslations,
   getMediaComments,
+  getListsWithMedia,
 } from '../media';
 import {
   MovieSummary_Full,
@@ -35,6 +36,7 @@ import {
   MovieTranslation,
   CommentSortByMedia,
   Comment,
+  ListQueryByType,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -329,5 +331,26 @@ export class Movies implements ApiNamespace {
     checkRequiredArg(movieID, 'movieID', 'string');
 
     return getMediaComments(this.config, 'movies', movieID, { pagination, sort });
+  }
+
+  /**
+   * Returns all lists that contain this movie. By default, personal lists are returned sorted by the most popular.
+   * @param param0
+   * @returns
+   */
+  async lists({
+    movieID,
+    pagination,
+    sort,
+    type,
+  }: {
+    movieID: string;
+    pagination: Pagination;
+    sort?: CommentSortByMedia;
+    type?: ListQueryByType;
+  }): Promise<ApiResponse<Comment[]>> {
+    checkRequiredArg(movieID, 'movieID', 'string');
+
+    return getListsWithMedia(this.config, 'movies', movieID, { pagination, sort, type });
   }
 }
