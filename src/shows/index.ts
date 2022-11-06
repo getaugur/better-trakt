@@ -19,6 +19,7 @@ import {
   getMediaRating,
   getRelatedMedia,
   getMediaStats,
+  getWatchingMedia,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -42,6 +43,7 @@ import {
   MediaRating,
   List,
   ShowStats,
+  UserProfile,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -385,5 +387,16 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getMediaStats<ShowStats>(this.config, 'shows', showID);
+  }
+
+  /**
+   * Returns all users watching this show right now.
+   * @param param0
+   * @returns
+   */
+  async watching({ showID }: { showID: string }): Promise<ApiResponse<UserProfile[]>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    return getWatchingMedia(this.config, 'shows', showID);
   }
 }

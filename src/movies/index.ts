@@ -19,6 +19,7 @@ import {
   getMediaRating,
   getRelatedMedia,
   getMediaStats,
+  getWatchingMedia,
 } from '../media';
 import {
   MovieSummary_Full,
@@ -43,6 +44,7 @@ import {
   MediaRating,
   List,
   MovieStats,
+  UserProfile,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -397,5 +399,16 @@ export class Movies implements ApiNamespace {
     checkRequiredArg(movieID, 'movieID', 'string');
 
     return getMediaStats<MovieStats>(this.config, 'movies', movieID);
+  }
+
+  /**
+   * Returns all users watching this movie right now.
+   * @param param0
+   * @returns
+   */
+  async watching({ movieID }: { movieID: string }): Promise<ApiResponse<UserProfile[]>> {
+    checkRequiredArg(movieID, 'movieID', 'string');
+
+    return getWatchingMedia(this.config, 'movies', movieID);
   }
 }

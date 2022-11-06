@@ -10,6 +10,7 @@ import {
   TraktApiContent,
   UpdatedIDs,
   UpdatedStartDate,
+  UserProfile,
 } from '../trakt';
 import { RecommendedPeriod } from '../trakt/media/recommended';
 import { Pagination, Filters, fetch } from '../utils';
@@ -381,6 +382,13 @@ export async function getMediaStats<T extends MovieStats>(
 ) {
   const url = `${apiUrl}/${type}/${mediaId}/stats`;
   const response = await fetch<T>(client, url);
+
+  return response;
+}
+
+export async function getWatchingMedia({ client, apiUrl }: ApiConfig, type: 'movies' | 'shows', mediaId: string) {
+  const url = `${apiUrl}/${type}/${mediaId}/watching`;
+  const response = await fetch<UserProfile[]>(client, url);
 
   return response;
 }
