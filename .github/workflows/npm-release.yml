@@ -8,14 +8,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
         with:
           node-version: 18.x
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
-      - run: pnpm install
-      # - run: pnpm build
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
