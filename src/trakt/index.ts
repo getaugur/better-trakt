@@ -8,3 +8,4 @@ export * from './lists';
 export * from './networks';
 export * from './traktTypes';
 export * from './users';
+export * from './episodes';
