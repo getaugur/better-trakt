@@ -1,4 +1,4 @@
-import { AxiosError, AxiosInstance, AxiosRequestHeaders, AxiosResponseHeaders } from 'axios';
+import { AxiosError, AxiosInstance, AxiosResponseHeaders } from 'axios';
 import { CommentSortByMedia, ListQueryByType, RecommendedPeriod, ReleasesCountry, UpdatedStartDate } from '../trakt';
 import { buildUrl } from './buildUrl';
 import { TraktHttpError } from './error';
@@ -95,7 +95,7 @@ export interface ApiResponse<T> {
    * @remarks
    * Can be useful for things like cache control, ratelimiting, or general debuging
    */
-  headers: AxiosResponseHeaders;
+  headers: AxiosResponseHeaders | Partial<Record<string, string> & { 'set-cookie'?: string[] | undefined }>;
 
   /**
    * Error object in the event of an error
@@ -154,14 +154,12 @@ export interface FetchOptions {
  * @internal
  */
 export async function fetch<T>(client: AxiosInstance, url: string, options?: FetchOptions): Promise<ApiResponse<T>> {
-  const headers: AxiosRequestHeaders = {};
-
-  if (options !== undefined && options.accessToken !== undefined)
-    headers['Authorization'] = `Bearer ${options.accessToken}`;
-
   try {
     const response = await client.get<T>(buildUrl(url, options), {
-      headers,
+      headers:
+        options !== undefined && options.accessToken !== undefined
+          ? { Authorization: `Bearer ${options.accessToken}` }
+          : undefined,
       // parseJson: (text: string) => Bourne.parse(text),
     });
 
@@ -170,7 +168,12 @@ export async function fetch<T>(client: AxiosInstance, url: string, options?: Fet
       headers: response.headers,
     };
 
-    if (response.headers['X-Pagination-Page'] !== undefined) {
+    if (
+      response.headers['X-Pagination-Page'] !== undefined &&
+      response.headers['X-Pagination-Limit'] !== undefined &&
+      response.headers['X-Pagination-Page-Count'] !== undefined &&
+      response.headers['X-Pagination-Item-Count'] !== undefined
+    ) {
       res.pagination = {
         page: parseInt(response.headers['X-Pagination-Page']),
         limit: parseInt(response.headers['X-Pagination-Limit']),
