@@ -16,7 +16,8 @@
     "trakt.tv",
     "sdk",
     "front-end",
-    "backend"
+    "backend",
+    "api"
   ],
   "scripts": {
     "build": "tsc",
