@@ -20,9 +20,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "build:check": "yarn build --noEmit",
+    "build:check": "pnpm build --noEmit",
     "build:docs": "typedoc --options typedoc.json",
-    "prepack": "yarn build && npmignore --auto",
+    "prepack": "pnpm build && npmignore --auto",
     "lint": "eslint src/**/*.ts test/**/*.spec.ts",
     "lint:fix": "eslint src/**/*.ts --quiet --fix",
     "example": "node example/index.js",
