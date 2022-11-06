@@ -3,8 +3,9 @@ import { Certifications } from './certifications';
 import { Countries } from './countries';
 import { Genres } from './genres';
 import { Languages } from './languages';
-import { Movies, Shows } from './media';
+import { Movies } from './movies';
 import { Networks } from './networks';
+import { Shows } from './shows';
 // api methods
 import { Users } from './users';
 

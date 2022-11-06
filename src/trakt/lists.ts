@@ -1,3 +1,4 @@
+import { Episode } from './episodes';
 import { TraktApiIds, TraktApiContent } from './traktTypes';
 import { UserProfile } from './users';
 
@@ -11,13 +12,23 @@ export interface PopularTrendingList {
 }
 
 /**
+ * Type of list
+ */
+export type ListType = 'personal' | 'official' | 'watchlists' | 'recommendations';
+
+/**
+ * All the types of a list you can search for
+ */
+export type ListQueryByType = ListType | 'all';
+
+/**
  * A list
  */
 export interface List {
   name: string;
   description: string;
   privacy: string;
-  type: string;
+  type: ListType;
   display_numbers: boolean;
   allow_comments: boolean;
   sort_by: string;
@@ -52,15 +63,8 @@ export interface ListItem {
   movie?: TraktApiContent;
   show?: TraktApiContent;
   season?: ListSeason;
-  episode?: ListEpisode;
+  episode?: Episode;
   person?: ListPerson;
-}
-
-export interface ListEpisode {
-  season: number;
-  number: number;
-  title: string;
-  ids: TraktApiIds;
 }
 
 export interface ListSeason {
@@ -71,24 +75,4 @@ export interface ListSeason {
 export interface ListPerson {
   name: string;
   ids: TraktApiIds;
-}
-
-export type ListCommentsSortBy = 'newest' | 'oldest' | 'likes' | 'replies';
-
-export interface ListComment {
-  id: number;
-  parent_id: number;
-  created_at: string;
-  updated_at: string;
-  comment: string;
-  spoiler: boolean;
-  review: boolean;
-  replies: number;
-  likes: number;
-  user_stats: {
-    rating: null | number;
-    play_count: number;
-    completed_count: number;
-  };
-  user: UserProfile;
 }

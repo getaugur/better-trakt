@@ -4,7 +4,8 @@
 import axios from 'axios';
 import { expect } from 'chai';
 
-import { Shows, Movies } from '../src/media';
+import { Shows } from '../src/shows';
+import { Movies } from '../src/movies';
 
 describe('Media', function () {
   describe('Shows', function () {

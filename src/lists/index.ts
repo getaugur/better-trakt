@@ -1,5 +1,5 @@
 import { ApiConfig, ApiNamespace } from '../client';
-import { List, ListComment, ListCommentsSortBy, ListItem, ListItemType, ListLike, PopularTrendingList } from '../trakt';
+import { Comment, CommentSortByBase, List, ListItem, ListItemType, ListLike, PopularTrendingList } from '../trakt';
 import { ApiResponse, fetch, Pagination } from '../utils';
 import { checkRequiredArg } from '../utils/requiredArg';
 
@@ -115,15 +115,13 @@ export class Lists implements ApiNamespace {
   }: {
     id: string;
     pagination: Pagination;
-    sort?: ListCommentsSortBy;
-  }): Promise<ApiResponse<ListComment[]>> {
+    sort?: CommentSortByBase;
+  }): Promise<ApiResponse<Comment[]>> {
     checkRequiredArg(id, 'id', 'string');
 
-    let url = `${this.config.apiUrl}/${id}/comments/`;
+    const url = `${this.config.apiUrl}/${id}/comments`;
 
-    if (sort !== undefined) url += `${sort}`;
-
-    const response = await fetch<ListComment[]>(this.config.client, url, { pagination });
+    const response = await fetch<Comment[]>(this.config.client, url, { pagination, sort });
 
     return response;
   }

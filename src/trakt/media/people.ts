@@ -1,4 +1,4 @@
-import { TraktApiIds } from './traktTypes';
+import { TraktApiIds } from '../traktTypes';
 
 // ========================================
 // Cast and Crew

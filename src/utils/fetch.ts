@@ -1,5 +1,52 @@
 import { AxiosError, AxiosInstance, AxiosRequestHeaders, AxiosResponseHeaders } from 'axios';
+import { CommentSortByMedia, ListQueryByType, RecommendedPeriod, ReleasesCountry, UpdatedStartDate } from '../trakt';
+import { buildUrl } from './buildUrl';
 import { TraktHttpError } from './error';
+
+export interface Filters {
+  /**
+   * Search titles and descriptions.
+   * @example batman
+   */
+  query?: string;
+
+  /**
+   * 4 digit year or range of years.
+   * @example 2016
+   */
+  years?: string;
+
+  /**
+   * Genre slugs.
+   * @example action
+   * @see {@link Genre.slug | Genre slug}
+   */
+  genres?: string[];
+
+  /**
+   * 2 character language code.
+   * @example en
+   */
+  languages?: string[];
+
+  /**
+   * 2 character country code.
+   * @example us
+   */
+  countries?: string[];
+
+  /**
+   * Range in minutes.
+   * @example 30-90
+   */
+  runtimes?: string;
+
+  /**
+   * Studio slugs.
+   * @example marvel-studios
+   */
+  studios?: string[];
+}
 
 /**
  * Pagination Options
@@ -57,8 +104,45 @@ export interface ApiResponse<T> {
 }
 
 export interface FetchOptions {
+  /**
+   * Token to access trakt api
+   */
   accessToken?: string;
+  /**
+   * Pagination settings
+   */
   pagination?: Pagination;
+  /**
+   * filter options
+   */
+  filters?: Filters;
+  /**
+   * Period to pull from
+   */
+  period?: RecommendedPeriod;
+  /**
+   * Start date
+   */
+  startDate?: UpdatedStartDate;
+  /**
+   * Specify country to look for
+   */
+  country?: ReleasesCountry;
+  /**
+   * Specify a language
+   */
+  language?: string;
+  /**
+   * Sorting options
+   *
+   * (This is just the most inclusive type, not always this permissive.)
+   */
+  sort?: CommentSortByMedia;
+
+  /**
+   * Types of lists one can query by
+   */
+  type?: ListQueryByType;
 }
 
 /**
@@ -76,7 +160,7 @@ export async function fetch<T>(client: AxiosInstance, url: string, options?: Fet
     headers['Authorization'] = `Bearer ${options.accessToken}`;
 
   try {
-    const response = await client.get<T>(url, {
+    const response = await client.get<T>(buildUrl(url, options), {
       headers,
       // parseJson: (text: string) => Bourne.parse(text),
     });
