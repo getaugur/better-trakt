@@ -90,7 +90,7 @@ _More examples in the [examples folder](https://github.com/getaugur/better-trakt
 
 ## Docs
 
-Docs for the latest release can be found at [https://getaugur.github.io/better-trakt/](https://getaugur.github.io/better-trakt/). For other versions simply run `yarn build:docs` in the repo.
+Docs for the latest release can be found at [https://getaugur.github.io/better-trakt/](https://getaugur.github.io/better-trakt/). For a more complete understanding of the api in general please visit [https://trakt.docs.apiary.io/](https://trakt.docs.apiary.io/).
 
 ## Getting Images
 
