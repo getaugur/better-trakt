@@ -3,6 +3,7 @@ import {
   Alias,
   Comment,
   CommentSortByMedia,
+  List,
   ListQueryByType,
   MediaRating,
   TraktApiContent,
@@ -344,7 +345,7 @@ export async function getListsWithMedia(
   },
 ) {
   const url = `${apiUrl}/${type}/${mediaId}/lists`;
-  const response = await fetch<Comment[]>(client, url, { pagination, sort, type: listType });
+  const response = await fetch<List[]>(client, url, { pagination, sort, type: listType });
 
   return response;
 }

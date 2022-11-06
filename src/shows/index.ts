@@ -38,6 +38,7 @@ import {
   Comment,
   ListQueryByType,
   MediaRating,
+  List,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -338,7 +339,7 @@ export class Shows implements ApiNamespace {
     pagination: Pagination;
     sort?: CommentSortByMedia;
     type?: ListQueryByType;
-  }): Promise<ApiResponse<Comment[]>> {
+  }): Promise<ApiResponse<List[]>> {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getListsWithMedia(this.config, 'shows', showID, { pagination, sort, type });
