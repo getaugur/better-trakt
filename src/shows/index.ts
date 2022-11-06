@@ -18,6 +18,7 @@ import {
   getListsWithMedia,
   getMediaRating,
   getRelatedMedia,
+  getMediaStats,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -40,6 +41,7 @@ import {
   ListQueryByType,
   MediaRating,
   List,
+  ShowStats,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -372,5 +374,16 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getRelatedMedia(this.config, 'shows', showID, { pagination });
+  }
+
+  /**
+   * Returns lots of show stats.
+   * @param param0
+   * @returns
+   */
+  async stats({ showID }: { showID: string }): Promise<ApiResponse<ShowStats>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    return getMediaStats<ShowStats>(this.config, 'shows', showID);
   }
 }

@@ -18,6 +18,7 @@ import {
   getListsWithMedia,
   getMediaRating,
   getRelatedMedia,
+  getMediaStats,
 } from '../media';
 import {
   MovieSummary_Full,
@@ -41,6 +42,7 @@ import {
   ListQueryByType,
   MediaRating,
   List,
+  MovieStats,
 } from '../trakt';
 import { ApiResponse, checkRequiredArg, Pagination, Filters, fetch } from '../utils';
 
@@ -384,5 +386,16 @@ export class Movies implements ApiNamespace {
     checkRequiredArg(movieID, 'movieID', 'string');
 
     return getRelatedMedia(this.config, 'movies', movieID, { pagination });
+  }
+
+  /**
+   * Returns lots of movie stats.
+   * @param param0
+   * @returns
+   */
+  async stats({ movieID }: { movieID: string }): Promise<ApiResponse<MovieStats>> {
+    checkRequiredArg(movieID, 'movieID', 'string');
+
+    return getMediaStats<MovieStats>(this.config, 'movies', movieID);
   }
 }

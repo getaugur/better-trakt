@@ -13,3 +13,4 @@ export * from './certifications';
 export * from './translations';
 export * from './comments';
 export * from './ratings';
+export * from './stats';

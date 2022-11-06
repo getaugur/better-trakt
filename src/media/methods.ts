@@ -6,6 +6,7 @@ import {
   List,
   ListQueryByType,
   MediaRating,
+  MovieStats,
   TraktApiContent,
   UpdatedIDs,
   UpdatedStartDate,
@@ -369,6 +370,17 @@ export async function getRelatedMedia(
 ) {
   const url = `${apiUrl}/${type}/${mediaId}/related`;
   const response = await fetch<TraktApiContent[]>(client, url, { pagination });
+
+  return response;
+}
+
+export async function getMediaStats<T extends MovieStats>(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  mediaId: string,
+) {
+  const url = `${apiUrl}/${type}/${mediaId}/stats`;
+  const response = await fetch<T>(client, url);
 
   return response;
 }
