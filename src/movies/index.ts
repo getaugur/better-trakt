@@ -17,6 +17,7 @@ import {
   getMediaComments,
   getListsWithMedia,
   getMediaRating,
+  getRelatedMedia,
 } from '../media';
 import {
   MovieSummary_Full,
@@ -366,5 +367,22 @@ export class Movies implements ApiNamespace {
     checkRequiredArg(movieID, 'movieID', 'string');
 
     return getMediaRating(this.config, 'movies', movieID);
+  }
+
+  /**
+   * Returns related and similar movies.
+   * @param param0
+   * @returns
+   */
+  async related({
+    movieID,
+    pagination,
+  }: {
+    movieID: string;
+    pagination: Pagination;
+  }): Promise<ApiResponse<TraktApiContent[]>> {
+    checkRequiredArg(movieID, 'movieID', 'string');
+
+    return getRelatedMedia(this.config, 'movies', movieID, { pagination });
   }
 }

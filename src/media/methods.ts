@@ -356,3 +356,19 @@ export async function getMediaRating({ client, apiUrl }: ApiConfig, type: 'movie
 
   return response;
 }
+
+export async function getRelatedMedia(
+  { client, apiUrl }: ApiConfig,
+  type: 'movies' | 'shows',
+  mediaId: string,
+  {
+    pagination,
+  }: {
+    pagination: Pagination;
+  },
+) {
+  const url = `${apiUrl}/${type}/${mediaId}/related`;
+  const response = await fetch<TraktApiContent[]>(client, url, { pagination });
+
+  return response;
+}

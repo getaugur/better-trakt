@@ -17,6 +17,7 @@ import {
   getMediaComments,
   getListsWithMedia,
   getMediaRating,
+  getRelatedMedia,
 } from '../media';
 import {
   ShowSummary_Full,
@@ -354,5 +355,22 @@ export class Shows implements ApiNamespace {
     checkRequiredArg(showID, 'showID', 'string');
 
     return getMediaRating(this.config, 'shows', showID);
+  }
+
+  /**
+   * Returns related and similar shows.
+   * @param param0
+   * @returns
+   */
+  async related({
+    showID,
+    pagination,
+  }: {
+    showID: string;
+    pagination: Pagination;
+  }): Promise<ApiResponse<TraktApiContent[]>> {
+    checkRequiredArg(showID, 'showID', 'string');
+
+    return getRelatedMedia(this.config, 'shows', showID, { pagination });
   }
 }
