@@ -73,13 +73,13 @@ _More examples in the [examples folder](https://github.com/getaugur/better-trakt
 | Genres                   |    ✅     |
 | Languages                |    ✅     |
 | Lists                    |    ✅     |
-| Movies                   |    🚧     |
+| Movies                   |    ✅     |
 | Networks                 |    ✅     |
 | People                   |    ❌     |
 | Recommendations          |    ❌     |
 | Scrobble                 |    ❌     |
 | Search                   |    ❌     |
-| Shows                    |    🚧     |
+| Shows                    |    ✅     |
 | Seasons                  |    ❌     |
 | Episodes                 |    ❌     |
 | Sync                     |    ❌     |
