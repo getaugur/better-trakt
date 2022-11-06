@@ -18,11 +18,14 @@
 ## Install
 
 ```bash
-# Npm
+# npm
 npm install better-trakt
 
 # Yarn
 yarn add better-trakt
+
+# pnpm
+pnpm add better-trakt
 ```
 
 ## Usage
