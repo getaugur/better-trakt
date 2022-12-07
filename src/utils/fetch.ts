@@ -82,7 +82,7 @@ export interface ApiResponse<T> {
   /**
    * Reponse data
    */
-  data?: T;
+  data: T;
 
   /**
    * Pagination info
@@ -96,11 +96,6 @@ export interface ApiResponse<T> {
    * Can be useful for things like cache control, ratelimiting, or general debuging
    */
   headers: AxiosResponseHeaders;
-
-  /**
-   * Error object in the event of an error
-   */
-  error?: TraktHttpError;
 }
 
 export interface FetchOptions {
@@ -159,37 +154,24 @@ export async function fetch<T>(client: AxiosInstance, url: string, options?: Fet
   if (options !== undefined && options.accessToken !== undefined)
     headers['Authorization'] = `Bearer ${options.accessToken}`;
 
-  try {
-    const response = await client.get<T>(buildUrl(url, options), {
-      headers,
-      // parseJson: (text: string) => Bourne.parse(text),
-    });
+  const response = await client.get<T>(buildUrl(url, options), {
+    headers,
+    // parseJson: (text: string) => Bourne.parse(text),
+  });
 
-    const res: ApiResponse<T> = {
-      data: response.data,
-      headers: response.headers,
+  const res: ApiResponse<T> = {
+    data: response.data,
+    headers: response.headers,
+  };
+
+  if (response.headers['X-Pagination-Page'] !== undefined) {
+    res.pagination = {
+      page: parseInt(response.headers['X-Pagination-Page']),
+      limit: parseInt(response.headers['X-Pagination-Limit']),
+      pageCount: parseInt(response.headers['X-Pagination-Page-Count']),
+      itemCount: parseInt(response.headers['X-Pagination-Item-Count']),
     };
-
-    if (response.headers['X-Pagination-Page'] !== undefined) {
-      res.pagination = {
-        page: parseInt(response.headers['X-Pagination-Page']),
-        limit: parseInt(response.headers['X-Pagination-Limit']),
-        pageCount: parseInt(response.headers['X-Pagination-Page-Count']),
-        itemCount: parseInt(response.headers['X-Pagination-Item-Count']),
-      };
-    }
-
-    return res;
-  } catch (e) {
-    if (e instanceof AxiosError && e.response !== undefined) {
-      // throw new TraktHttpError(e.response.status, e.response.data, e.response.headers);
-      return {
-        error: new TraktHttpError(e.response.status, e.response.data, e.response.headers),
-        headers: e.response.headers,
-      };
-    }
-
-    // console.error(e);
-    throw e;
   }
+
+  return res;
 }
