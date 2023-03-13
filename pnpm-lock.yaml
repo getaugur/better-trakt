@@ -18,7 +18,7 @@ specifiers:
   ts-node: ^10.9.1
   typedoc: ^0.23.10
   typedoc-plugin-extras: ^2.3.0
-  typedoc-plugin-mdn-links: ^2.0.0
+  typedoc-plugin-mdn-links: ^3.0.3
   typedoc-plugin-missing-exports: ^1.0.0
   typescript: ^4.7.4
 
@@ -42,7 +42,7 @@ devDependencies:
   ts-node: 10.9.1_yodorn5kzjgomblrsstrk2spaa
   typedoc: 0.23.20_typescript@4.8.4
   typedoc-plugin-extras: 2.3.1_typedoc@0.23.20
-  typedoc-plugin-mdn-links: 2.0.0_typedoc@0.23.20
+  typedoc-plugin-mdn-links: 3.0.3_typedoc@0.23.20
   typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.20
   typescript: 4.8.4
 
@@ -2259,10 +2259,10 @@ packages:
       typedoc: 0.23.20_typescript@4.8.4
     dev: true
 
-  /typedoc-plugin-mdn-links/2.0.0_typedoc@0.23.20:
-    resolution: {integrity: sha512-IGLuelXPOenGdmklr5DHgPPf/MfZj7aEYCxCMtPN8C1D0lA7w0YLahd0jhDDcOMU7zL1EPcM5pPnhZHltDhqGQ==}
+  /typedoc-plugin-mdn-links/3.0.3_typedoc@0.23.20:
+    resolution: {integrity: sha512-NXhIpwQnsg7BcyMCHVqj3tUK+DL4g3Bt96JbFl4APzTGFkA+iM6GfZ/fn3TAqJ8O0CXG5R9BfWxolw1m1omNuQ==}
     peerDependencies:
-      typedoc: 0.22.x || 0.23.x
+      typedoc: '>= 0.23.14 || 0.24.x'
     dependencies:
       typedoc: 0.23.20_typescript@4.8.4
     dev: true
