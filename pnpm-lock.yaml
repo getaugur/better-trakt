@@ -19,7 +19,7 @@ specifiers:
   typedoc: ^0.23.10
   typedoc-plugin-extras: ^2.3.0
   typedoc-plugin-mdn-links: ^2.0.0
-  typedoc-plugin-missing-exports: ^1.0.0
+  typedoc-plugin-missing-exports: ^2.0.0
   typescript: ^4.7.4
 
 dependencies:
@@ -43,7 +43,7 @@ devDependencies:
   typedoc: 0.23.20_typescript@4.8.4
   typedoc-plugin-extras: 2.3.1_typedoc@0.23.20
   typedoc-plugin-mdn-links: 2.0.0_typedoc@0.23.20
-  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.20
+  typedoc-plugin-missing-exports: 2.0.0_typedoc@0.23.20
   typescript: 4.8.4
 
 packages:
@@ -2267,10 +2267,10 @@ packages:
       typedoc: 0.23.20_typescript@4.8.4
     dev: true
 
-  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.20:
-    resolution: {integrity: sha512-7s6znXnuAj1eD9KYPyzVzR1lBF5nwAY8IKccP5sdoO9crG4lpd16RoFpLsh2PccJM+I2NASpr0+/NMka6ThwVA==}
+  /typedoc-plugin-missing-exports/2.0.0_typedoc@0.23.20:
+    resolution: {integrity: sha512-t0QlKCm27/8DaheJkLo/gInSNjzBXgSciGhoLpL6sLyXZibm7SuwJtHvg4qXI2IjJfFBgW9mJvvszpoxMyB0TA==}
     peerDependencies:
-      typedoc: 0.22.x || 0.23.x
+      typedoc: 0.24.x
     dependencies:
       typedoc: 0.23.20_typescript@4.8.4
     dev: true
