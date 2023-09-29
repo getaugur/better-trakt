@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Users, Certifications, Movies, Shows } from '../src';
+import { Users, Certifications, Movies, Shows, Countries, Genres, Languages, Lists, Networks } from '../src';
 
 import { Trakt } from '../src/client';
 
@@ -82,6 +82,46 @@ describe('Client', function () {
       const client = new Trakt({ clientId: '' });
 
       expect(client.shows).to.be.instanceOf(Shows);
+    });
+  });
+
+  describe('#countries', function () {
+    it('should be a class', function () {
+      const client = new Trakt({ clientId: '' });
+
+      expect(client.countries).to.be.instanceOf(Countries);
+    });
+  });
+
+  describe('#genres', function () {
+    it('should be a class', function () {
+      const client = new Trakt({ clientId: '' });
+
+      expect(client.genres).to.be.instanceOf(Genres);
+    });
+  });
+
+  describe('#languages', function () {
+    it('should be a class', function () {
+      const client = new Trakt({ clientId: '' });
+
+      expect(client.languages).to.be.instanceOf(Languages);
+    });
+  });
+
+  describe('#networks', function () {
+    it('should be a class', function () {
+      const client = new Trakt({ clientId: '' });
+
+      expect(client.networks).to.be.instanceOf(Networks);
+    });
+  });
+
+  describe('#lists', function () {
+    it('should be a class', function () {
+      const client = new Trakt({ clientId: '' });
+
+      expect(client.lists).to.be.instanceOf(Lists);
     });
   });
 });

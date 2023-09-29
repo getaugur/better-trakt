@@ -39,8 +39,6 @@ describe('Media', function () {
           apiUrl: '',
         });
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         expect(shows.summary).to.throw(TypeError);
       });
     });
@@ -60,8 +58,6 @@ describe('Media', function () {
           apiUrl: '',
         });
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         expect(shows.people).to.throw(TypeError);
       });
     });

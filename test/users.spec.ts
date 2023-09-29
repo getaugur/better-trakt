@@ -37,8 +37,6 @@ describe('Users', function () {
         apiUrl: '',
       });
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       expect(users.watchedMovies).to.throw(TypeError);
     });
   });
@@ -58,8 +56,6 @@ describe('Users', function () {
         apiUrl: '',
       });
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       expect(users.watchedShows).to.throw(TypeError);
     });
   });
