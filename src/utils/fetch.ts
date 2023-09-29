@@ -166,6 +166,7 @@ export async function fetch<T>(client: AxiosInstance, url: string, options?: Fet
     const res: ApiResponse<T> = {
       data: response.data,
       headers: response.headers,
+      // error: TraktHttpError,
     };
 
     if (

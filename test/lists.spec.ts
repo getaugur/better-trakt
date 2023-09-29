@@ -37,8 +37,6 @@ describe('Lists', function () {
         apiUrl: '',
       });
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       expect(lists.trending).to.throw(TypeError);
     });
   });
@@ -58,8 +56,6 @@ describe('Lists', function () {
         apiUrl: '',
       });
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       expect(lists.popular).to.throw(TypeError);
     });
   });
@@ -121,8 +117,6 @@ describe('Lists', function () {
         apiUrl: '',
       });
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       expect(lists.getItems).to.throw(TypeError);
     });
   });
@@ -142,8 +136,6 @@ describe('Lists', function () {
         apiUrl: '',
       });
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       expect(lists.getComments).to.throw(TypeError);
     });
   });

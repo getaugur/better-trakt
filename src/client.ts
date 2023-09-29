@@ -8,6 +8,7 @@ import { Networks } from './networks';
 import { Shows } from './shows';
 // api methods
 import { Users } from './users';
+import { Lists } from './lists';
 
 const version = '';
 
@@ -136,6 +137,11 @@ export class Trakt {
    */
   readonly networks: Networks;
 
+  /**
+   * Lists api
+   */
+  readonly lists: Lists;
+
   constructor(settings: TraktSettings) {
     // apply settings
     this.settings = {
@@ -169,5 +175,6 @@ export class Trakt {
     this.genres = new Genres(apiConfig);
     this.languages = new Languages(apiConfig);
     this.networks = new Networks(apiConfig);
+    this.lists = new Lists(apiConfig);
   }
 }
