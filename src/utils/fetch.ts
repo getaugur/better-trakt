@@ -1,6 +1,7 @@
-import { AxiosError, AxiosInstance, AxiosRequestHeaders, AxiosResponseHeaders } from 'axios';
+import { AxiosError, AxiosInstance, AxiosResponseHeaders } from 'axios';
 import { CommentSortByMedia, ListQueryByType, RecommendedPeriod, ReleasesCountry, UpdatedStartDate } from '../trakt';
 import { buildUrl } from './buildUrl';
+import { TraktHttpError } from './error';
 
 export interface Filters {
   /**
@@ -81,7 +82,7 @@ export interface ApiResponse<T> {
   /**
    * Reponse data
    */
-  data: T;
+  data?: T;
 
   /**
    * Pagination info
@@ -165,6 +166,7 @@ export async function fetch<T>(client: AxiosInstance, url: string, options?: Fet
     const res: ApiResponse<T> = {
       data: response.data,
       headers: response.headers,
+      // error: TraktHttpError,
     };
 
     if (
@@ -194,6 +196,4 @@ export async function fetch<T>(client: AxiosInstance, url: string, options?: Fet
     // console.error(e);
     throw e;
   }
-
-  return res;
 }
