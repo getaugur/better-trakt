@@ -1,6 +1,6 @@
 {
   "name": "better-trakt",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A Trakt.tv client with native Typescript support and quality of life features",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,11 +30,11 @@
     "test": "nyc mocha -r ts-node/register test/**/*.spec.ts"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^1.1.3"
   },
   "devDependencies": {
     "@types/chai": "^4.3.3",
-    "@types/mocha": "^9.1.1",
+    "@types/mocha": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "chai": "^4.3.6",
@@ -50,7 +50,7 @@
     "typedoc": "^0.23.10",
     "typedoc-plugin-extras": "^2.3.0",
     "typedoc-plugin-mdn-links": "^2.0.0",
-    "typedoc-plugin-missing-exports": "^0.23.0",
+    "typedoc-plugin-missing-exports": "^1.0.0",
     "typescript": "^4.7.4"
   },
   "publishConfig": {

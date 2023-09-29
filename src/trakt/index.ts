@@ -14,3 +14,4 @@ export * from './users';
  * @private
  */
 export type MediaNamespace = 'movies' | 'shows';
+export * from './episodes';
